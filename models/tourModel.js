@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import slugify from "slugify";
-// const validator = require('validator');
+
 
 const tourSchema = new mongoose.Schema(
   {
@@ -48,7 +48,7 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       validate: {
         validator: function (val) {
-          // this only points to current doc on NEW document creation
+
           return val < this.price;
         },
         message: "Discount price ({VALUE}) should be below regular price",
@@ -89,7 +89,7 @@ tourSchema.virtual("durationWeeks").get(function () {
   return this.duration / 7;
 });
 
-// DOCUMENT MIDDLEWARE: runs before .save() and .create()
+
 tourSchema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
@@ -108,7 +108,7 @@ tourSchema.post(/^find/, function (docs, next) {
   next();
 });
 
-// AGGREGATION MIDDLEWARE
+
 tourSchema.pre("aggregate", function (next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
 
