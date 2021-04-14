@@ -31,7 +31,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please confirm your password"],
     validate: {
-
       validator: function (el) {
         return el === this.password;
       },
@@ -49,7 +48,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password") || this.isNew) return next();
 
   this.password = await bcrypt.hash(this.password, 12);
 

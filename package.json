@@ -23,6 +23,9 @@
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-react": "^7.23.2",
         "express": "^4.17.1",
+        "express-mongo-sanitize": "^2.0.2",
+        "express-rate-limit": "^5.2.6",
+        "hpp": "^0.2.3",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.12.3",
         "morgan": "^1.10.0",
@@ -31,6 +34,7 @@
         "path": "^0.12.7",
         "prettier": "^2.2.1",
         "slugify": "^1.5.0",
-        "validator": "^13.5.2"
+        "validator": "^13.5.2",
+        "xss-clean": "^0.1.1"
     }
 }
