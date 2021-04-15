@@ -1,4 +1,4 @@
-import { randomBytes, createHash } from "crypto";
+import crypto from "crypto";
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcryptjs";
@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please confirm your password"],
     validate: {
+      // This only works on CREATE and SAVE!!!
       validator: function (el) {
         return el === this.password;
       },
@@ -48,10 +49,13 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password") || this.isNew) return next();
+  // Only run this function if password was actually modified
+  if (!this.isModified("password")) return next();
 
+  // Hash the password with cost of 12
   this.password = await bcrypt.hash(this.password, 12);
 
+  // Delete passwordConfirm field
   this.passwordConfirm = undefined;
   next();
 });
@@ -91,9 +95,10 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
 };
 
 userSchema.methods.createPasswordResetToken = function () {
-  const resetToken = randomBytes(32).toString("hex");
+  const resetToken = crypto.randomBytes(32).toString("hex");
 
-  this.passwordResetToken = createHash("sha256")
+  this.passwordResetToken = crypto
+    .createHash("sha256")
     .update(resetToken)
     .digest("hex");
 

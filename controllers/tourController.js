@@ -1,7 +1,8 @@
-import Tour from "./../models/tourModel.js";
-import APIFeatures from "./../utils/apiFeatures.js";
-import catchAsync from "./../utils/catchAsync.js";
-import AppError from "./../utils/appError.js";
+/* eslint-disable import/extensions */
+import Tour from "../models/tourModel.js";
+import APIFeatures from "../utils/apiFeatures.js";
+import catchAsync from "../utils/catchAsync.js";
+import AppError from "../utils/appError.js";
 
 export function aliasTopTours(req, res, next) {
   req.query.limit = "5";
@@ -30,7 +31,6 @@ export const getAllTours = catchAsync(async (req, res, next) => {
 
 export const getTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
-  // Tour.findOne({ _id: req.params.id })
 
   if (!tour) {
     return next(new AppError("No tour found with that ID", 404));
