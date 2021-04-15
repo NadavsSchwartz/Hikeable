@@ -10,6 +10,7 @@ import {
   deleteTour,
 } from './../controllers/tourController.js';
 import { protect, restrictTo } from './../controllers/authController.js';
+import reviewRouter from './reviewRoutes.js';
 
 const router = Router();
 
@@ -28,4 +29,5 @@ router
   .patch(updateTour)
   .delete(protect, restrictTo('admin', 'lead-guide'), deleteTour);
 
+router.use('/:tourId/reviews', reviewRouter);
 export default router;

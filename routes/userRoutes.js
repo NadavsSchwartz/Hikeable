@@ -15,6 +15,7 @@ import {
   resetPassword,
   protect,
   updatePassword,
+  restrictTo,
 } from './../controllers/authController.js';
 
 const router = Router();

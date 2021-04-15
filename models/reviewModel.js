@@ -1,4 +1,4 @@
-// review / rating / createdAt / ref to tour / ref to user
+
 import mongoose from "mongoose";
 import Tour from "./tourModel.js";
 
@@ -6,7 +6,7 @@ const reviewSchema = new mongoose.Schema(
   {
     review: {
       type: String,
-      required: [true, "Review can not be empty!"],
+      required: [true, "Reviewes can not be empty!"],
     },
     rating: {
       type: Number,
@@ -20,12 +20,12 @@ const reviewSchema = new mongoose.Schema(
     tour: {
       type: mongoose.Schema.ObjectId,
       ref: "Tour",
-      required: [true, "Review must belong to a tour."],
+      required: [true, "Reviewes must belong to a tour."],
     },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
-      required: [true, "Review must belong to a user"],
+      required: [true, "Reviewes must belong to a user"],
     },
   },
   {
