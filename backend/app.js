@@ -16,8 +16,6 @@ import globalErrorHandler from './controllers/errorController.js';
 const __dirname = path.resolve();
 
 const app = express();
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, `views`));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, `public`)));

@@ -10,8 +10,8 @@ import {
   deleteTour,
   getToursWithin,
   getDistances,
-} from './../controllers/tourController.js';
-import { protect, restrictTo } from './../controllers/authController.js';
+} from '../controllers/tourController.js';
+import { protect, restrictTo } from '../controllers/authController.js';
 import reviewRouter from './reviewRoutes.js';
 
 const router = Router();

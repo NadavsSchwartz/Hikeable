@@ -8,7 +8,7 @@ import {
   updateUser,
   deleteUser,
   getMe,
-} from './../controllers/userController.js';
+} from '../controllers/userController.js';
 import {
   signup,
   login,
@@ -17,7 +17,7 @@ import {
   protect,
   updatePassword,
   restrictTo,
-} from './../controllers/authController.js';
+} from '../controllers/authController.js';
 
 const router = Router();
 router.post('/signup', signup);
