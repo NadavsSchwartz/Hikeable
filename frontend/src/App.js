@@ -1,19 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
-import "./index.css";
-import HomeScreen from "./screens/HomeScreen";
+import TourScreen from "./screens/TourScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-
+import "./index.css";
 const App = () => {
   return (
     <>
       <Router>
         <Header />
-        <Route path="/" component={HomeScreen} exact />
-        <Route path="/login" component={LoginScreen} />
-        <Route path="/signup" component={RegisterScreen} />
+        <main>
+          <Route path="/tours" component={TourScreen} exact />
+          <Route path="/login" component={LoginScreen} />
+          <Route path="/signup" component={RegisterScreen} />
+        </main>
       </Router>
     </>
   );
