@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <MDBNavbar expand="lg" light bgColor="light">
       <MDBContainer fluid>
-        <MDBNavbarBrand href="#" className="text-success">
+        <MDBNavbarBrand href="/" className="text-success">
           Hikeable
         </MDBNavbarBrand>
         <MDBNavbarToggler

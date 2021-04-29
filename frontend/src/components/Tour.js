@@ -15,23 +15,18 @@ const Tour = ({ tour }) => {
     <MDBCard
       className="text-white"
       style={{
-        width: "19rem",
-        height: "500px",
+        width: "20rem",
+
         backgroundColor: "#28b485",
       }}
     >
-      <MDBCardImage
-        src={tour.imageCover}
-        alt={tour.name}
-        position="top"
-        className="bg-image ripple"
-      />
+      <MDBCardImage src={tour.imageCover} alt={tour.name} position="top" style={{height: '200px'}} />
       <MDBCardBody>
         <MDBCardTitle className="mb-3 text-center">{tour.name}</MDBCardTitle>
         <MDBCardText>
           <i className="fas fa-map-marker-alt ms-3"></i>{" "}
           {tour.startLocation.description}
-          <i className="fas fa-user-alt ms-5"></i> {tour.maxGroupSize} People
+          <i className="fas fa-user-alt ms-4"></i> {tour.maxGroupSize} People
         </MDBCardText>
 
         <MDBCardText>
@@ -51,10 +46,8 @@ const Tour = ({ tour }) => {
           {tour.summary}
         </MDBListGroupItem>
         <MDBListGroupItem className="text-muted">
-          <span style={{ color: "#28b485" }}>
-            ${tour.price} Per Person
-          </span>
-          <i className="fas fa-star ms-4" style={{ color: "gold" }}></i>
+          <span style={{ color: "#28b485" }}>${tour.price} Per Person</span>
+          <i className="fas fa-star ms-3" style={{ color: "gold" }}></i>
           {tour.ratingsAverage}({tour.ratingsQuantity}) Reviews
         </MDBListGroupItem>
         <MDBListGroupItem className="text-muted text-center">
