@@ -20,64 +20,54 @@ const Header = () => {
   const { userInfo } = userLogin;
 
   return (
-    <MDBNavbar expand="lg" light bgColor="light">
+    <MDBNavbar expand="lg" light bgColor="light" className="fixed-top">
       <MDBContainer fluid>
         <MDBNavbarBrand href="/" className="text-success">
           Hikeable
         </MDBNavbarBrand>
         <MDBNavbarToggler
           type="button"
-          data-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
           onClick={() => setShowNavNoTogglerSecond(!showNavNoTogglerSecond)}
           className="text-success"
         >
           <MDBIcon icon="bars" fas />
         </MDBNavbarToggler>
-        <MDBCollapse navbar show={showNavNoTogglerSecond}>
-          <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
-            {userInfo.user ? (
-              <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
-                <MDBNavbarLink href="/dashboard" className="text-success">
-                  {userInfo.user.name}
+        <MDBCollapse
+          navbar
+          right
+          className="ms-auto"
+          show={showNavNoTogglerSecond}
+        >
+          {userInfo.user ? (
+            <MDBNavbarNav right className="d-flex justify-content-end">
+              <MDBNavbarLink href="/dashboard" className="text-success">
+                {userInfo.user.name}
+              </MDBNavbarLink>
+              <MDBNavbarLink href="/tours" className="text-success">
+                All Tours
+              </MDBNavbarLink>
+              <MDBNavbarItem>
+                <MDBNavbarLink href="/logout">
+                  <strong>Logout</strong>
                 </MDBNavbarLink>
-                <MDBNavbarLink href="/tours" className="text-success">
-                  All Tours
-                </MDBNavbarLink>
+              </MDBNavbarItem>
+            </MDBNavbarNav>
+          ) : (
+            <MDBNavbarNav right className="ms-auto">
+              <MDBNavbarItem>
                 <MDBNavbarItem>
-                  <MDBNavbarLink href="/logout">
-                    <strong>Logout</strong>
+                  <MDBNavbarLink href="/login" className="text-success">
+                    Login
                   </MDBNavbarLink>
                 </MDBNavbarItem>
-              </MDBNavbarNav>
-            ) : (
-              <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
-                <MDBNavbarItem>
-                  <MDBNavbarItem>
-                    <MDBNavbarLink href="/login" className="text-success">
-                      Login
-                    </MDBNavbarLink>
-                  </MDBNavbarItem>
-                </MDBNavbarItem>
-                <MDBNavbarItem>
-                  <MDBNavbarLink href="/signup" className="text-success">
-                    Register
-                  </MDBNavbarLink>
-                </MDBNavbarItem>
-              </MDBNavbarNav>
-            )}
-          </MDBNavbarNav>
-          <form className="d-flex input-group w-auto">
-            <input
-              type="search"
-              className="form-control"
-              placeholder="Type query"
-              aria-label="Search"
-            />
-            <MDBBtn color="light">Search</MDBBtn>
-          </form>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href="/signup" className="text-success">
+                  Register
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+            </MDBNavbarNav>
+          )}
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>

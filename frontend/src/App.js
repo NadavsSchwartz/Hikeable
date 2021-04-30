@@ -5,12 +5,14 @@ import TourScreen from "./screens/TourScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import "./index.css";
+import HomeScreen from "./screens/HomeScreen";
 const App = () => {
   return (
     <>
       <Router>
         <Header />
         <main>
+          <Route path="/" component={HomeScreen} exact />
           <Route path="/tours" component={TourScreen} exact />
           <Route path="/login" component={LoginScreen} />
           <Route path="/signup" component={RegisterScreen} />

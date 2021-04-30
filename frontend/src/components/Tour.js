@@ -13,14 +13,19 @@ import {
 const Tour = ({ tour }) => {
   return (
     <MDBCard
-      className="text-white"
+      className="text-white mx-auto"
       style={{
         width: "20rem",
 
         backgroundColor: "#28b485",
       }}
     >
-      <MDBCardImage src={tour.imageCover} alt={tour.name} position="top" style={{height: '200px'}} />
+      <MDBCardImage
+        src={tour.imageCover}
+        alt={tour.name}
+        position="top"
+        style={{ height: "200px" }}
+      />
       <MDBCardBody>
         <MDBCardTitle className="mb-3 text-center">{tour.name}</MDBCardTitle>
         <MDBCardText>

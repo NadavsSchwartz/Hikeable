@@ -30,7 +30,7 @@ const TourScreen = () => {
           <Carousel />
         </MDBCollapse>
       </div> */}
-      <MDBRow className="d-flex justify-content-center">
+      <MDBRow fluid className="d-flex justify-content-center">
         {loading ? (
           <Loader />
         ) : error ? (
