@@ -44,7 +44,7 @@ const Header = () => {
         >
           {userInfo.user ? (
             <MDBNavbarNav right className="d-flex justify-content-end">
-              <MDBNavbarLink href="/dashboard" className="text-success">
+              <MDBNavbarLink href="/profile" className="text-success">
                 {userInfo.user.name}
               </MDBNavbarLink>
               <MDBNavbarLink href="/tours" className="text-success">
