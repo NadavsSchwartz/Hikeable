@@ -20,10 +20,14 @@ const Header = () => {
   const { userInfo } = userLogin;
 
   return (
-    <MDBNavbar expand="lg" light bgColor="light" className="fixed-top">
+    <MDBNavbar expand="lg" light bgColor="white" className="fixed-top">
       <MDBContainer fluid>
         <MDBNavbarBrand href="/" className="text-success">
-          Hikeable
+          <img
+            src="https://i.ibb.co/Bncx4t9/Screen-Shot-2021-05-02-at-9-04-40-AM.png"
+            alt=""
+            style={{ height: "55px" }}
+          />
         </MDBNavbarBrand>
         <MDBNavbarToggler
           type="button"

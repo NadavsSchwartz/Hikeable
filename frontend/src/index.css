@@ -1,8 +1,12 @@
+body,
+html {
+    height: 100%;
+}
+
 .intro {
     background: url("http://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 1200px;
 }

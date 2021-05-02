@@ -5,6 +5,7 @@ import TourScreen from "./screens/TourScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import "./index.css";
+import "./App.scss";
 import HomeScreen from "./screens/HomeScreen";
 const App = () => {
   return (
