@@ -1,8 +1,20 @@
 import { MDBBtn, MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getTopTours } from "../actions/tourActions";
 import AboutSection from "../components/AboutSection";
+import Card from "../components/Card";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+
+  const topTours = useSelector((state) => state.topTours);
+  const { loading, error, topTours: tours } = topTours;
+  useEffect(() => {
+    dispatch(getTopTours());
+  }, [dispatch]);
   return (
     <>
       <div className="intro">
@@ -41,6 +53,31 @@ const HomeScreen = () => {
         </div>
       </div>
       <AboutSection />
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <MDBContainer style={{ marginTop: "200px" }}>
+          <MDBRow md="12">
+            {tours &&
+              tours.map((tour) => (
+                <MDBCol size="3" style={{ minWidth: "300px", padding: "auto" }}>
+                  <Card
+                    cardImg={tour.imageCover}
+                    cardAlt={tour.name}
+                    cardTitle={tour.name}
+                    cardText={tour.summary}
+                    cardPrice={tour.price}
+                    cardDuration={tour.durationWeeks}
+                    cardDifficulty={tour.difficulty}
+                    cardRating={tour.ratingsAverage}
+                  />
+                </MDBCol>
+              ))}
+          </MDBRow>
+        </MDBContainer>
+      )}
     </>
   );
 };

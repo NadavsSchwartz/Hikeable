@@ -23,7 +23,7 @@ const AboutSection = () => {
                   minHeight: "300px",
                   minWidth: "350px",
                   maxWidth: "400px",
-                  backgroundColor: "#d3d3d3",
+                  backgroundColor: "#f3f1f1",
                 }}
                 alignment="center"
               >
@@ -37,7 +37,9 @@ const AboutSection = () => {
                     With supporting text below as a natural lead-in to
                     additional content.
                   </MDBCardText>
-                  <MDBBtn href="#">Go somewhere</MDBBtn>
+                  <MDBBtn rounded href="#" className="btn-success ">
+                    Go somewhere
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -47,7 +49,7 @@ const AboutSection = () => {
                   margin: "15px",
                   minHeight: "300px",
                   minWidth: "350px",
-                  backgroundColor: "#d3d3d3",
+                  backgroundColor: "#f3f1f1",
                   maxWidth: "400px",
                 }}
                 alignment="center"
@@ -61,7 +63,9 @@ const AboutSection = () => {
                     With supporting text below as a natural lead-in to
                     additional content.
                   </MDBCardText>
-                  <MDBBtn href="#">Go somewhere</MDBBtn>
+                  <MDBBtn rounded href="#" className="btn-success ">
+                    Go somewhere
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -71,7 +75,7 @@ const AboutSection = () => {
                   margin: "15px",
                   minHeight: "300px",
                   minWidth: "350px",
-                  backgroundColor: "#d3d3d3",
+                  backgroundColor: "#f3f1f1",
                   maxWidth: "400px",
                 }}
                 alignment="center"
@@ -85,7 +89,9 @@ const AboutSection = () => {
                     With supporting text below as a natural lead-in to
                     additional content.
                   </MDBCardText>
-                  <MDBBtn href="#">Go somewhere</MDBBtn>
+                  <MDBBtn rounded href="#" className="btn-success ">
+                    Go somewhere
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>
@@ -96,7 +102,7 @@ const AboutSection = () => {
                   minHeight: "300px",
                   minWidth: "350px",
                   maxHeight: "300px",
-                  backgroundColor: "#d3d3d3",
+                  backgroundColor: "#f3f1f1",
                   maxWidth: "400px",
                 }}
                 alignment="center"
@@ -111,7 +117,9 @@ const AboutSection = () => {
                     With supporting text below as a natural lead-in to
                     additional content.
                   </MDBCardText>
-                  <MDBBtn href="#">Go somewhere</MDBBtn>
+                  <MDBBtn rounded href="#" className="btn-success ">
+                    Go somewhere
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </MDBCol>

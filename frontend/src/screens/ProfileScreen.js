@@ -1,14 +1,5 @@
 import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardHeader,
-  MDBCardText,
-  MDBCardTitle,
   MDBCol,
-  MDBContainer,
-  MDBInput,
-  MDBListGroupItem,
   MDBRow,
   MDBTabs,
   MDBTabsContent,
@@ -18,6 +9,7 @@ import {
 } from "mdb-react-ui-kit";
 import React from "react";
 import { useState } from "react/cjs/react.development";
+import MyBookings from "../components/MyBookings";
 import ProfileSettings from "../components/ProfileSettings";
 
 const ProfileScreen = () => {
@@ -126,7 +118,7 @@ const ProfileScreen = () => {
             <MDBTabsLink
               onClick={() => handleVerticalClick("settings")}
               active={verticalActive === "settings"}
-              style={{ maxWidth: "160px" }}
+              style={{ maxWidth: "160px", backgroundColor: "#1cb155" }}
             >
               Settings
             </MDBTabsLink>
@@ -134,7 +126,7 @@ const ProfileScreen = () => {
           <MDBTabsItem>
             <MDBTabsLink
               onClick={() => handleVerticalClick("myreviews")}
-              style={{ maxWidth: "160px" }}
+              style={{ maxWidth: "160px", backgroundColor: "#1cb155" }}
               active={verticalActive === "myreviews"}
             >
               My Reviews
@@ -142,7 +134,10 @@ const ProfileScreen = () => {
           </MDBTabsItem>
           <MDBTabsItem>
             <MDBTabsLink
-              style={{ maxWidth: "160px" }}
+              style={{
+                maxWidth: "160px",
+                backgroundColor: "#1cb155",
+              }}
               onClick={() => handleVerticalClick("mybookings")}
               active={verticalActive === "mybookings"}
             >
@@ -157,10 +152,10 @@ const ProfileScreen = () => {
             <ProfileSettings />
           </MDBTabsPane>
           <MDBTabsPane show={verticalActive === "myreviews"}>
-            My Reviews
+            <h2 className="text-center mb-5">My Reviews</h2>
           </MDBTabsPane>
           <MDBTabsPane show={verticalActive === "mybookings"}>
-            My bookings
+            <MyBookings />
           </MDBTabsPane>
         </MDBTabsContent>
       </MDBCol>
