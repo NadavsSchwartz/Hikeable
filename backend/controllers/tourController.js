@@ -96,7 +96,8 @@ export const getMonthlyPlan = catchAsync(async (req, res, next) => {
 export function aliasTopTours(req, res, next) {
   req.query.limit = "5";
   req.query.sort = "-ratingsAverage,price";
-  req.query.fields = "name,price,ratingsAverage,summary,difficulty,imageCover";
+  req.query.fields =
+    "name,price,ratingsAverage,summary, description,difficulty,imageCover, duration, startDates,startLocation";
   next();
 }
 

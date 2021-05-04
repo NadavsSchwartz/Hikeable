@@ -54,22 +54,33 @@ const HomeScreen = () => {
       </div>
       <AboutSection />
       {loading ? (
-        <Loader />
+        <Loader style={{ marginTop: "200px" }} />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message style={{ marginTop: "200px" }} variant="danger">
+          {error}
+        </Message>
       ) : (
         <MDBContainer style={{ marginTop: "200px" }}>
-          <MDBRow md="12">
+          <h1
+            className="d-flex justify-content-center"
+            style={{ color: "rgb(141, 191, 49)" }}
+          >
+            TOP TOURS
+          </h1>
+          <MDBRow className="d-flex justify-content-center">
             {tours &&
               tours.map((tour) => (
-                <MDBCol size="3" style={{ minWidth: "300px", padding: "auto" }}>
+                <MDBCol
+                  className="col-lg-3 col-md-6 col-sm-8"
+                  style={{ minWidth: "340px" }}
+                >
                   <Card
                     cardImg={tour.imageCover}
                     cardAlt={tour.name}
                     cardTitle={tour.name}
                     cardText={tour.summary}
                     cardPrice={tour.price}
-                    cardDuration={tour.durationWeeks}
+                    cardDuration={tour.duration}
                     cardDifficulty={tour.difficulty}
                     cardRating={tour.ratingsAverage}
                   />
