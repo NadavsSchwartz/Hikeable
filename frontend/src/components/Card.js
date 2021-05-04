@@ -2,6 +2,7 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardLink,
   MDBCardText,
   MDBCardTitle,
   MDBCol,
@@ -10,24 +11,19 @@ import {
 } from "mdb-react-ui-kit";
 import React from "react";
 
-const Card = ({
-  cardImg,
-  cardAlt,
-  cardTitle,
-  cardText,
-  cardPrice,
-  cardDuration,
-  cardDifficulty,
-  cardRating,
-}) => {
+const Card = ({ tour }) => {
   return (
     <MDBCard className=" mt-5 ">
-      <div className="bg-image card-image" style={{ height: "250px" }}>
-        <img src={cardImg} alt={cardAlt} />
+      <div className="bg-image " style={{ height: "230px" }}>
+        <img
+          src={tour.imageCover}
+          alt={tour.name}
+          className="img-fluid card-image"
+        />
       </div>
       <MDBCardBody>
         <MDBCardTitle
-          className="text-success"
+          className="text-success "
           style={{
             fontSize: "1.5rem",
             fontWeight: "400",
@@ -35,26 +31,30 @@ const Card = ({
             textAlign: "center",
           }}
         >
-          {cardTitle}
+          {tour.name}
         </MDBCardTitle>
-        <MDBCardText style={{ height: "65px" }}>{cardText}</MDBCardText>
+        <MDBCardText style={{ height: "55px" }}>{tour.summary}</MDBCardText>
       </MDBCardBody>
       <div className="row" style={{ marginLeft: "15px" }}>
         <div className="col-lg-6 col-md-6">
-          <span>Difficulty: {cardDifficulty}</span>
+          <span>Difficulty: {tour.difficulty}</span>
 
-          <p>{cardDuration} DAYS</p>
+          <p>{tour.duration} DAYS</p>
         </div>
         <div className=" col-lg-6 col-md-6">
-          ${cardPrice}
-          <p>Rating:{cardRating}</p>
+          ${tour.price}
+          <p>Rating:{tour.ratingsAverage}</p>
         </div>
       </div>
-      <MDBCol className='text-center mb-2'>
+      <MDBCol className="text-center mb-3">
         {" "}
-        <MDBBtn className="btn-success " rounded>
+        <MDBCardLink
+          href={`/${tour.id}`}
+          className="btn-success btn-lg btn-rounded"
+          rounded
+        >
           Discover More
-        </MDBBtn>
+        </MDBCardLink>
       </MDBCol>
     </MDBCard>
   );

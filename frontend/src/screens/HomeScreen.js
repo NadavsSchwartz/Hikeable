@@ -74,16 +74,7 @@ const HomeScreen = () => {
                   className="col-lg-3 col-md-6 col-sm-8"
                   style={{ minWidth: "340px" }}
                 >
-                  <Card
-                    cardImg={tour.imageCover}
-                    cardAlt={tour.name}
-                    cardTitle={tour.name}
-                    cardText={tour.summary}
-                    cardPrice={tour.price}
-                    cardDuration={tour.duration}
-                    cardDifficulty={tour.difficulty}
-                    cardRating={tour.ratingsAverage}
-                  />
+                  <Card tour={tour} />
                 </MDBCol>
               ))}
           </MDBRow>
