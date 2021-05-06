@@ -7,42 +7,51 @@ import {
   MDBCardTitle,
   MDBListGroup,
   MDBListGroupItem,
-  MDBBtn,
+  MDBCardLink,
 } from "mdb-react-ui-kit";
 
 const Tour = ({ tour }) => {
   return (
     <MDBCard
-      className="text-white mx-auto"
+      className="text-white text-center mt-5"
       style={{
-        width: "20rem",
-
-        backgroundColor: "#28b485",
+        backgroundColor: "#2e9157",
       }}
     >
       <MDBCardImage
         src={tour.imageCover}
         alt={tour.name}
-        position="top"
-        style={{ height: "200px" }}
+        style={{ height: "220px" }}
+        className="card-image"
       />
       <MDBCardBody>
-        <MDBCardTitle className="mb-3 text-center">{tour.name}</MDBCardTitle>
-        <MDBCardText>
-          <i className="fas fa-map-marker-alt ms-3"></i>{" "}
-          {tour.startLocation.description}
-          <i className="fas fa-user-alt ms-4"></i> {tour.maxGroupSize} People
-        </MDBCardText>
+        <MDBCardTitle>{tour.name}</MDBCardTitle>
+        <div className="row">
+          <div className=" col-lg-6 col-md-6 col-sm-6 col-6">
+            <p>
+              <i className="fas fa-road"></i>
+              {tour.locations.length} Stops
+            </p>
+            <p>
+              <i className="fas fa-user-alt "></i> {tour.maxGroupSize} People
+            </p>
+          </div>
 
-        <MDBCardText>
-          <i className="far fa-calendar-alt ms-3"></i>{" "}
-          {tour.startDates[0].split("T")[0]}
-          <i className="fas fa-map-marker-alt ms-5"></i> {tour.locations.length}{" "}
-          Stops
-        </MDBCardText>
+          <div className=" col-lg-6 col-md-6 col-sm-6 col-6">
+            <p>
+              <i className="far fa-calendar-alt "></i>{" "}
+              {tour.startDates[0].split("T")[0]}
+            </p>
+            <p className="text-truncate">
+              {" "}
+              <i className="fas fa-map-marker-alt "></i>{" "}
+              {tour.startLocation.description}
+            </p>
+          </div>
+        </div>
       </MDBCardBody>
-      <MDBListGroup flush>
-        <MDBListGroupItem className="text-muted text-center">
+      <MDBListGroup>
+        <MDBListGroupItem className="text-muted ">
           <strong>
             {tour.difficulty.toUpperCase()}-{tour.duration} DAYS TOUR
           </strong>
@@ -51,13 +60,18 @@ const Tour = ({ tour }) => {
           {tour.summary}
         </MDBListGroupItem>
         <MDBListGroupItem className="text-muted">
-          <span style={{ color: "#28b485" }}>${tour.price} Per Person</span>
+          <span style={{ color: "#2e9157" }}>${tour.price} Per Person</span>
           <i className="fas fa-star ms-3" style={{ color: "gold" }}></i>
           {tour.ratingsAverage}({tour.ratingsQuantity}) Reviews
         </MDBListGroupItem>
-        <MDBListGroupItem className="text-muted text-center">
-          <MDBBtn style={{ backgroundColor: "#28b485" }}>DETAILS</MDBBtn>
-        </MDBListGroupItem>
+
+        <MDBCardLink
+          href={`/tours/${tour.id}`}
+          className="btn-success btn-lg "
+          style={{ background: "#2e9157" }}
+        >
+          DETAILS
+        </MDBCardLink>
       </MDBListGroup>
     </MDBCard>
   );

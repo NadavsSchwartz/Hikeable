@@ -55,7 +55,7 @@ export const getOne = (Model, populateOptions) =>
     const doc = await query;
 
     if (!doc) {
-      return next(new AppError("No doc Document with that ID", 404));
+      return next(new AppError("No Document with that ID", 404));
     }
 
     res.status(200).json({

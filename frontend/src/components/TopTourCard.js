@@ -6,15 +6,13 @@ import {
   MDBCardText,
   MDBCardTitle,
   MDBCol,
-  MDBContainer,
-  MDBRow,
 } from "mdb-react-ui-kit";
 import React from "react";
 
-const Card = ({ tour }) => {
+const TopTourCard = ({ tour }) => {
   return (
     <MDBCard className=" mt-5 ">
-      <div className="bg-image " style={{ height: "230px" }}>
+      <div className="bg-image ">
         <img
           src={tour.imageCover}
           alt={tour.name}
@@ -49,9 +47,8 @@ const Card = ({ tour }) => {
       <MDBCol className="text-center mb-3">
         {" "}
         <MDBCardLink
-          href={`/${tour.id}`}
+          href={`/tours/${tour.id}`}
           className="btn-success btn-lg btn-rounded"
-          rounded
         >
           Discover More
         </MDBCardLink>
@@ -60,4 +57,4 @@ const Card = ({ tour }) => {
   );
 };
 
-export default Card;
+export default TopTourCard;

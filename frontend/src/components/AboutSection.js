@@ -5,7 +5,6 @@ import {
   MDBCardText,
   MDBCardTitle,
   MDBCol,
-  MDBContainer,
   MDBRow,
 } from "mdb-react-ui-kit";
 import React from "react";
@@ -13,7 +12,13 @@ import React from "react";
 const AboutSection = () => {
   return (
     <>
-      <section className="section-features">
+      <section
+        className="section-features bg-image img-fluid"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(#eee, 0.7), rgba(#000, 0.7)), url('https://hdwallpaperim.com/wp-content/uploads/2017/08/23/458900-nature-photography-landscape-waterfall-lake-mountains-snow-clouds-sky-Norway-sunrise-hiking-748x502.jpg')",
+        }}
+      >
         <div className="section-features__grid">
           <MDBRow>
             <MDBCol className="d-flex justify-content-center">
@@ -22,8 +27,9 @@ const AboutSection = () => {
                   margin: "15px",
                   minHeight: "300px",
                   minWidth: "350px",
-                  maxWidth: "400px",
-                  backgroundColor: "#f3f1f1",
+                  maxWidth: "350px",
+
+                  backgroundColor: "hsla(0,0%,100%,0.8)",
                 }}
                 alignment="center"
               >
@@ -49,8 +55,9 @@ const AboutSection = () => {
                   margin: "15px",
                   minHeight: "300px",
                   minWidth: "350px",
-                  backgroundColor: "#f3f1f1",
-                  maxWidth: "400px",
+                  backgroundColor: "hsla(0,0%,100%,0.8)",
+
+                  maxWidth: "350px",
                 }}
                 alignment="center"
               >
@@ -75,8 +82,9 @@ const AboutSection = () => {
                   margin: "15px",
                   minHeight: "300px",
                   minWidth: "350px",
-                  backgroundColor: "#f3f1f1",
-                  maxWidth: "400px",
+                  backgroundColor: "hsla(0,0%,100%,0.8)",
+
+                  maxWidth: "350px",
                 }}
                 alignment="center"
               >
@@ -102,8 +110,9 @@ const AboutSection = () => {
                   minHeight: "300px",
                   minWidth: "350px",
                   maxHeight: "300px",
-                  backgroundColor: "#f3f1f1",
-                  maxWidth: "400px",
+                  backgroundColor: "hsla(0,0%,100%,0.8)",
+
+                  maxWidth: "350px",
                 }}
                 alignment="center"
               >

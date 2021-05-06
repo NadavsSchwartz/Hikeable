@@ -43,7 +43,6 @@
             }
             
             .card-image {
-                background-size: cover;
                 -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
                 clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
                 border-top-left-radius: 0.3px;
@@ -54,11 +53,11 @@
             }
             
             .section-features {
-                padding: 10rem 0;
+                padding: 20rem 0;
                 background-image: linear-gradient( to right bottom, rgba($color-primary-light, 0.7), rgba($color-primary-dark, 0.7)), url("https://hdwallpaperim.com/wp-content/uploads/2017/08/23/458900-nature-photography-landscape-waterfall-lake-mountains-snow-clouds-sky-Norway-sunrise-hiking-748x502.jpg");
                 background-size: cover;
                 transform: skewY(-5deg);
-                margin-top: 10rem;
+                margin-top: 15rem;
                 @include respond(tab-port) {
                     padding: 10rem 0;
                 }
@@ -93,4 +92,31 @@
                 .title {
                     background-image: linear-gradient( to right, rgba($color-primary-light, 0.85), rgba($color-primary-dark, 0.85));
                 }
+            }
+            
+            .section-tour-details {
+                padding: 5rem 0;
+                background-image: linear-gradient( to right bottom, rgba($color-primary-light, 0.7), rgba($color-primary-dark, 0.7)), url("https://hdwallpaperim.com/wp-content/uploads/2017/08/23/458900-nature-photography-landscape-waterfall-lake-mountains-snow-clouds-sky-Norway-sunrise-hiking-748x502.jpg");
+                background-size: cover;
+                transform: skewY(-2deg);
+                margin-top: 3rem;
+                @include respond(tab-port) {
+                    padding: 10rem 0;
+                }
+                &>* {
+                    transform: skewY(5deg);
+                }
+            }
+            
+            #tour-header {
+                font-size: 2rem;
+                font-weight: 700;
+                color: transparent;
+                background: linear-gradient( to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8));
+                background-clip: text;
+            }
+            
+            .tour_details {
+                background-clip: text;
+                background: linear-gradient( to right, rgba($color-grey-light-1, 1), rgba($color-grey-dark-2, 0.5));
             }

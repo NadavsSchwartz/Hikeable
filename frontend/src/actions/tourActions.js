@@ -6,9 +6,10 @@ import {
   GET_TOURS_SUCCESS,
   GET_TOURS_REQUEST,
   GET_TOURS_FAIL,
-  GET_TOURS_DETAILS_FAIL,
+  GET_TOUR_DETAILS_FAIL,
+  GET_TOUR_DETAILS_REQUEST,
+  GET_TOUR_DETAILS_SUCCESS,
   GET_TOURS_DETAILS_REQUEST,
-  GET_TOURS_DETAILS_SUCCESS,
 } from "../constants/tourConstants";
 
 export const getTopTours = () => async (dispatch) => {
@@ -46,7 +47,29 @@ export const getTours = () => async (dispatch) => {
     dispatch({ type: GET_TOURS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: GET_TOP_TOURS_FAIL,
+      type: GET_TOURS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getTourDetails = (tourId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_TOURS_DETAILS_REQUEST });
+    
+    const {
+      data: {
+        data: { data },
+      },
+    } = await axios.get(`http://localhost:3000/api/v1/tours/${tourId}`);
+
+    dispatch({ type: GET_TOUR_DETAILS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_TOUR_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

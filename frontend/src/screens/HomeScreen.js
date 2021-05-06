@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTopTours } from "../actions/tourActions";
 import AboutSection from "../components/AboutSection";
-import Card from "../components/Card";
+import TopTourCard from "../components/TopTourCard";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 
@@ -61,20 +61,15 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <MDBContainer style={{ marginTop: "200px" }}>
-          <h1
-            className="d-flex justify-content-center"
-            style={{ color: "rgb(141, 191, 49)" }}
-          >
-            TOP TOURS
-          </h1>
+          <h1 className="d-flex justify-content-center">TOP TOURS</h1>
           <MDBRow className="d-flex justify-content-center">
             {tours &&
               tours.map((tour) => (
                 <MDBCol
-                  className="col-lg-3 col-md-6 col-sm-8"
+                  className="col-lg-4 col-md-4 col-sm-12"
                   style={{ minWidth: "340px" }}
                 >
-                  <Card tour={tour} />
+                  <TopTourCard tour={tour} />
                 </MDBCol>
               ))}
           </MDBRow>
