@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   MDBNavbar,
   MDBContainer,
@@ -8,16 +8,20 @@ import {
   MDBNavbarItem,
   MDBNavbarLink,
   MDBCollapse,
-  MDBBtn,
   MDBIcon,
   MDBNavbarNav,
 } from "mdb-react-ui-kit";
+import { logout } from "../actions/userActions";
 
 const Header = () => {
   const [showNavNoTogglerSecond, setShowNavNoTogglerSecond] = useState(false);
-
+  const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   return (
     <MDBNavbar expand="lg" light bgColor="white" className="fixed-top">
@@ -42,22 +46,26 @@ const Header = () => {
           className="ms-auto"
           show={showNavNoTogglerSecond}
         >
-          {userInfo.user ? (
-            <MDBNavbarNav right className="d-flex justify-content-end">
+          {userInfo && userInfo ? (
+            <MDBNavbarNav
+              right
+              className="d-flex justify-content-end align-items-center"
+            >
               <MDBNavbarLink href="/profile" className="text-success">
                 {userInfo.user.name}
               </MDBNavbarLink>
               <MDBNavbarLink href="/tours" className="text-success">
                 All Tours
               </MDBNavbarLink>
-              <MDBNavbarItem>
-                <MDBNavbarLink href="/logout">
-                  <strong>Logout</strong>
-                </MDBNavbarLink>
+              <MDBNavbarItem onClick={logoutHandler}>
+                <strong>Logout</strong>
               </MDBNavbarItem>
             </MDBNavbarNav>
           ) : (
-            <MDBNavbarNav right className="ms-auto">
+            <MDBNavbarNav
+              right
+              className="d-flex justify-content-end align-items-center"
+            >
               <MDBNavbarItem>
                 <MDBNavbarItem>
                   <MDBNavbarLink href="/login" className="text-success">
