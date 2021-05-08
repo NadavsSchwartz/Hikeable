@@ -8,37 +8,19 @@ import {
   MDBCarouselElement,
   MDBCarouselCaption,
 } from "mdb-react-ui-kit";
-import Loader from "./Loader";
-import Message from "./Message";
-const Carousel = () => {
-  const dispatch = useDispatch();
 
-  const topTours = useSelector((state) => state.topTours);
-  const { loading, error, topTours: tours } = topTours;
+const Carousel = ({ tours }) => {
   let index = -1;
-  useEffect(() => {
-    dispatch(getTopTours());
-  }, [dispatch]);
-  return loading ? (
-    <Loader />
-  ) : error ? (
-    <Message variant="danger">{error}</Message>
-  ) : (
-    <MDBCarousel showIndicators showControls fade>
-      <MDBCarouselInner>
-        {tours &&
-          tours.map((tour) => (
-            <MDBCarouselItem itemId={(index += 1)}>
-              <MDBCarouselElement src={tour.imageCover} alt={tour.name} />
 
-              <MDBCarouselCaption className="d-block d-sm-block">
-                <h5>{tour.name}</h5>
-                <p>{tour.summary}</p>
-              </MDBCarouselCaption>
-            </MDBCarouselItem>
-          ))}
-      </MDBCarouselInner>
-    </MDBCarousel>
+  return (
+    <>
+      {tours &&
+        tours.images.map((image) => (
+          <MDBCarouselItem itemId={(index += 1)}>
+            <MDBCarouselElement src={image} alt={image} />
+          </MDBCarouselItem>
+        ))}
+    </>
   );
 };
 

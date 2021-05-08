@@ -3,17 +3,23 @@ import {
   MDBCardBody,
   MDBCardFooter,
   MDBCardHeader,
+  MDBCardImage,
   MDBCardText,
+  MDBCarousel,
+  MDBCarouselInner,
   MDBCol,
   MDBContainer,
   MDBRow,
 } from "mdb-react-ui-kit";
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTourDetails } from "../actions/tourActions";
+import Carousel from "../components/Carousel";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import MapBox from "../components/MapBox";
 
 const TourDetailScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -30,118 +36,150 @@ const TourDetailScreen = ({ history, match }) => {
       dispatch(getTourDetails(match.params.id));
     }
   }, [match, dispatch, tour]);
+
   return (
-    <div>
+    <div className="container">
       {loading ? (
         <Loader style={{ marginTop: "200px" }} />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         tour && (
-          <div style={{ minWidth: "325px" }}>
-            <MDBContainer className="section-tour-details">
-              <div className="d-flex justify-content-center align-items-center">
-                <p
+          <>
+            <div style={{ minWidth: "325px" }}>
+              <MDBContainer className="section-tour-details">
+                <div className="d-flex justify-content-center align-items-center">
+                  <p
+                    style={{
+                      marginTop: "5px",
+                      paddingTop: "35px",
+                      transform: "skewY(-3deg)",
+                    }}
+                    className="text-white display-5"
+                  >
+                    <span className="fw-bold ms-1">{tour.name}</span>
+                  </p>
+                </div>
+                <div
+                  className="d-flex justify-content-center align-items-center mt-3"
                   style={{
-                    marginTop: "5px",
-                    paddingTop: "35px",
-                    transform: "skewY(-3deg)",
+                    transform: "skewY(2deg)",
                   }}
-                  className="text-white display-5"
                 >
-                  <span className="fw-bold ms-1">{tour.name}</span>
-                </p>
-              </div>
-              <div
-                className="d-flex justify-content-center align-items-center mt-3"
+                  <div className="me-5 text-white fw-bold">
+                    <i className="far fa-clock"> </i> {tour.duration} DAYS
+                  </div>
+                  <div className="ms-3 text-white fw-bold">
+                    <i className="fas fa-map-marker-alt"></i>{" "}
+                    {tour.startLocation.description}
+                  </div>
+                </div>
+              </MDBContainer>
+              <MDBContainer
+                className="tour_details"
                 style={{
-                  transform: "skewY(2deg)",
+                  transform: "skewY(-2deg)",
                 }}
               >
-                <div className="me-5 text-white">
-                  <i className="far fa-clock"> </i> {tour.duration} DAYS
+                <div className="row" style={{ transform: "skewY(2deg)" }}>
+                  <div className="col-6 mt-5">
+                    <MDBCardHeader className="text-center" id="tour-header">
+                      {" "}
+                      TOUR DETAILS
+                    </MDBCardHeader>
+                    <MDBCardBody className="mt-3">
+                      <MDBCardText className="text-muted mt-1">
+                        <i class="far fa-calendar text-success"></i> NEXT DATE:{" "}
+                        <span className="p-2">
+                          {tour.startDates[0].split("T")[0]}
+                        </span>
+                      </MDBCardText>
+                      <MDBCardText className="text-muted">
+                        <i class="fas fa-angle-double-right text-success"> </i>{" "}
+                        DIFFICULTY:{" "}
+                        <span className="p-2">{tour.difficulty}</span>
+                      </MDBCardText>
+                      <MDBCardText className="text-muted">
+                        <i className="fas fa-user text-success"></i>{" "}
+                        PARTICIPANTS:{" "}
+                        <span className="p-2">{tour.maxGroupSize}</span>
+                      </MDBCardText>
+                      <MDBCardText className="text-muted">
+                        <i className="far fa-star text-success"> </i> RATING:
+                        <span className="p-2"> {tour.ratingsAverage}/5</span>
+                      </MDBCardText>
+                    </MDBCardBody>
+                  </div>
+
+                  <p
+                    className="col-6 text-center"
+                    id="tour-header"
+                    style={{ marginTop: "64px" }}
+                  >
+                    ABOUT THE TRIP
+                    <MDBCardFooter>
+                      <span className="text-muted fs-5 fw-normal">
+                        {tour.description}
+                      </span>
+                    </MDBCardFooter>
+                  </p>
                 </div>
-                <div className="ms-3 text-white">
-                  <i className="fas fa-map-marker-alt"></i>{" "}
-                  {tour.startLocation.description}
-                </div>
-              </div>
+                <MDBCardBody className="mt-5"></MDBCardBody>
+              </MDBContainer>
+            </div>
+            <MapBox locations={tour.locations} />
+            <MDBCardHeader className="text-center mt-3" id="tour-header">
+              TOUR GUIDES
+            </MDBCardHeader>
+            <MDBContainer className="d-flex justify-content-center ">
+              <MDBRow>
+                {tour &&
+                  tour.guides.map((tourGuide) => (
+                    <>
+                      {/*<img
+                src="https://www.natours.dev/img/users/user-12.jpg"
+                alt={tourGuide.name}
+                style={{
+                  borderRadius: "50%",
+                }}
+                className="col-sm-2 col-md-2 col-lg-2 img-fluid"
+              />
+              <MDBCardText className="col-sm-8 col-md-8 col-lg-3 fw-bold text-muted ">
+                {tourGuide.role.toUpperCase()}
+                <span className="ms-5">{tourGuide.name}</span>
+              </MDBCardText> */}
+                      <div className="col-4 mt-5">
+                        <div className="col-12">
+                          <img
+                            className="img-fluid rounded-circle"
+                            src="https://www.natours.dev/img/users/user-13.jpg"
+                            alt={tourGuide.name}
+                          />
+                        </div>
+
+                        <p className="text-muted text-center col-12">
+                          {tourGuide.role.toUpperCase()}
+                          <p className="ms-1">{tourGuide.name}</p>
+                        </p>
+                      </div>
+                    </>
+                  ))}
+              </MDBRow>
             </MDBContainer>
-            <MDBContainer
-              className="tour_details"
+
+            <MDBCarousel
+              showIndicators
+              showControls
+              fade
               style={{
                 transform: "skewY(-2deg)",
               }}
             >
-              <div className="row" style={{ transform: "skewY(2deg)" }}>
-                <div className="col-6 mt-5">
-                  <MDBCardHeader className="text-center" id="tour-header">
-                    {" "}
-                    TOUR DETAILS
-                  </MDBCardHeader>
-                  <MDBCardBody className="mt-3">
-                    <MDBCardText className="text-muted mt-1">
-                      <i class="far fa-calendar text-success"></i> NEXT DATE:{" "}
-                      <span className="p-2">
-                        {tour.startDates[0].split("T")[0]}
-                      </span>
-                    </MDBCardText>
-                    <MDBCardText className="text-muted">
-                      <i class="fas fa-angle-double-right text-success"> </i>{" "}
-                      DIFFICULTY: <span className="p-2">{tour.difficulty}</span>
-                    </MDBCardText>
-                    <MDBCardText className="text-muted">
-                      <i className="fas fa-user text-success"></i> PARTICIPANTS:{" "}
-                      <span className="p-2">{tour.maxGroupSize}</span>
-                    </MDBCardText>
-                    <MDBCardText className="text-muted">
-                      <i className="far fa-star text-success"> </i> RATING:
-                      <span className="p-2"> {tour.ratingsAverage}/5</span>
-                    </MDBCardText>
-                  </MDBCardBody>
-
-                  <MDBCardHeader className="text-center mt-3" id="tour-header">
-                    {" "}
-                    TOUR GUIDES
-                  </MDBCardHeader>
-                  {tour.guides.map((tourGuide) => (
-                    <MDBContainer>
-                      <MDBRow className="mt-2 text-center">
-                        <img
-                          src="https://www.natours.dev/img/users/user-12.jpg"
-                          alt={tourGuide.name}
-                          style={{
-                            borderRadius: "50%",
-                            width: "6rem",
-                          }}
-                          className="col-sm-3 col-md-3 col-lg-3 "
-                        />
-                        <MDBCardText className="col-sm-3 col-md-4 col-lg-3 fw-bold text-muted mt-1">
-                          {tourGuide.role.toUpperCase()}
-                        </MDBCardText>
-                        <span className="col-sm-4 col-md-4 col-lg-3 mt-1">
-                          {tourGuide.name}
-                        </span>
-                      </MDBRow>
-                    </MDBContainer>
-                  ))}
-                </div>
-
-                <p
-                  className="col-6 text-center"
-                  id="tour-header"
-                  style={{ marginTop: "64px" }}
-                >
-                  ABOUT THE TRIP
-                  <MDBCardFooter>
-                    <span className="text-muted fs-5 fw-normal">
-                      {tour.description}
-                    </span>
-                  </MDBCardFooter>
-                </p>
-              </div>
-            </MDBContainer>
-          </div>
+              <MDBCarouselInner>
+                <Carousel tours={tour} />
+              </MDBCarouselInner>
+            </MDBCarousel>
+          </>
         )
       )}
     </div>

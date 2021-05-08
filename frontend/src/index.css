@@ -10,3 +10,30 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.map-container {
+    height: 500px;
+    transform: skewY(-2deg);
+}
+
+.marker {
+    background-image: url('https://i.ibb.co/y8dtLSF/pin.png');
+    background-size: cover;
+    width: 32px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    max-width: 20rem;
+}
+
+.mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    padding: 1rem !important;
+    font-size: 1.5rem;
+    transform: skewY(2deg);
+    -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+}
