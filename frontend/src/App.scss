@@ -120,3 +120,10 @@
                 background-clip: text;
                 background: linear-gradient( to right, rgba($color-grey-light-1, 1), rgba($color-grey-dark-2, 0.5));
             }
+            
+            .reviews {
+                padding: 5rem 0;
+                background-image: linear-gradient( to right bottom, rgba($color-primary-light, 0.7), rgba($color-primary-dark, 0.7));
+                background-size: cover;
+                transform: skewY(-2deg);
+            }

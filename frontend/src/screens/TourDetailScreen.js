@@ -20,6 +20,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import MapBox from "../components/MapBox";
+import ReviewCarousel from "../components/ReviewCarousel";
 
 const TourDetailScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -136,18 +137,6 @@ const TourDetailScreen = ({ history, match }) => {
                 {tour &&
                   tour.guides.map((tourGuide) => (
                     <>
-                      {/*<img
-                src="https://www.natours.dev/img/users/user-12.jpg"
-                alt={tourGuide.name}
-                style={{
-                  borderRadius: "50%",
-                }}
-                className="col-sm-2 col-md-2 col-lg-2 img-fluid"
-              />
-              <MDBCardText className="col-sm-8 col-md-8 col-lg-3 fw-bold text-muted ">
-                {tourGuide.role.toUpperCase()}
-                <span className="ms-5">{tourGuide.name}</span>
-              </MDBCardText> */}
                       <div className="col-4 mt-5">
                         <div className="col-12">
                           <img
@@ -182,10 +171,18 @@ const TourDetailScreen = ({ history, match }) => {
           </>
         )
       )}
+      <section className="text-center my-5">
+        <h2 className="h1-responsive fw-bold my-5">Reviews</h2>
+        <div className="wrapper-carousel-fix">
+          <MDBCarousel className="no-flex testimonial-carousel slide carousel-fade">
+            <MDBCarouselInner role="listbox">
+              <ReviewCarousel TourDetails={tour} />
+            </MDBCarouselInner>
+          </MDBCarousel>
+        </div>
+      </section>
     </div>
   );
 };
 
 export default TourDetailScreen;
-// <div className="col-md-6" style={{ transform: "skewY(2deg)" }}>
-// MDBCardHeader className="text-center"

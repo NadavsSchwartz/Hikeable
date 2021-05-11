@@ -6,7 +6,6 @@ import {
   MDBCarouselInner,
   MDBCarouselItem,
   MDBCarouselElement,
-  MDBCarouselCaption,
 } from "mdb-react-ui-kit";
 
 const Carousel = ({ tours }) => {

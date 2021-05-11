@@ -24,17 +24,18 @@ const MapBox = ({ locations }) => {
       })
         .setLngLat(loc.coordinates)
         .setPopup(
-          new mapboxgl.Popup({ offset: 10 }) // add popups
+          new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(
               "<h6> Day" + loc.day + ":" + " " + loc.description + "</h6>"
             )
         )
-        .addTo(map.current);
+        .addTo(map.current)
+        .togglePopup();
       bounds.extend(loc.coordinates);
     });
     map.current.fitBounds(bounds, {
       padding: {
-        top: 200,
+        top: 100,
         bottom: 150,
         left: 100,
         right: 100,
