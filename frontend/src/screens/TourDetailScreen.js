@@ -128,33 +128,8 @@ const TourDetailScreen = ({ history, match }) => {
                 <MDBCardBody className="mt-5"></MDBCardBody>
               </MDBContainer>
             </div>
-            <MapBox locations={tour.locations} />
-            <MDBCardHeader className="text-center mt-3" id="tour-header">
-              TOUR GUIDES
-            </MDBCardHeader>
-            <MDBContainer className="d-flex justify-content-center ">
-              <MDBRow>
-                {tour &&
-                  tour.guides.map((tourGuide) => (
-                    <>
-                      <div className="col-4 mt-5">
-                        <div className="col-12">
-                          <img
-                            className="img-fluid rounded-circle"
-                            src="https://www.natours.dev/img/users/user-13.jpg"
-                            alt={tourGuide.name}
-                          />
-                        </div>
 
-                        <p className="text-muted text-center col-12">
-                          {tourGuide.role.toUpperCase()}
-                          <p className="ms-1">{tourGuide.name}</p>
-                        </p>
-                      </div>
-                    </>
-                  ))}
-              </MDBRow>
-            </MDBContainer>
+            <MapBox locations={tour.locations} />
 
             <MDBCarousel
               showIndicators
@@ -171,6 +146,35 @@ const TourDetailScreen = ({ history, match }) => {
           </>
         )
       )}
+
+      <MDBCardHeader className="text-center mt-3" id="tour-header">
+        TOUR GUIDES
+      </MDBCardHeader>
+      <MDBContainer className="d-flex justify-content-center ">
+        <MDBRow>
+          {tour &&
+            tour.guides.map((tourGuide) => (
+              <>
+                <div className="col-6 mt-5">
+                  <div className="col-12">
+                    <img
+                      className="img-fluid rounded-circle"
+                      src={tourGuide.photo}
+                      alt={tourGuide.name}
+                    />
+                  </div>
+
+                  <p className="text-muted text-center col-12">
+                    {tourGuide.role.toUpperCase()}
+                    <p className="ms-1">{tourGuide.name}</p>
+                  </p>
+                </div>
+              </>
+            ))}
+        </MDBRow>
+      </MDBContainer>
+
+      
       <MDBContainer className="text-center my-5 ">
         <MDBRow>
           <h2 className="h1-responsive fw-bold ">Reviews</h2>
