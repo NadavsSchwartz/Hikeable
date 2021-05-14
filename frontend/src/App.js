@@ -9,6 +9,7 @@ import "./App.scss";
 import HomeScreen from "./screens/HomeScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import TourDetailScreen from "./screens/TourDetailScreen";
+import Footer from "./components/Footer";
 const App = () => {
   return (
     <>
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/signup" component={RegisterScreen} />
         </main>
       </Router>
+      <Footer />
     </>
   );
 };

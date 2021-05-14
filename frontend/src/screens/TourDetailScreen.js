@@ -186,6 +186,10 @@ const TourDetailScreen = ({ history, match }) => {
           </MDBCarousel>
         </MDBRow>
       </MDBContainer>
+
+      <MDBContainer>
+        Book
+      </MDBContainer>
     </div>
   );
 };

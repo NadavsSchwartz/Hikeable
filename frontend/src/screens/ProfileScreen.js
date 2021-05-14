@@ -23,95 +23,10 @@ const ProfileScreen = () => {
     setVerticalActive(value);
   };
   return (
-    // <div className="user-view">
-    //   <nav className="user-view__menu">
-    //     <ul className="side-nav">
-    //       <li className="side-nav--active"></li>
-    //       <li>
-    //         <a href="/my-tours">My bookings</a>
-    //       </li>
-    //       <li>
-    //         <a href="#">My reviews</a>
-    //       </li>
-    //       <li>
-    //         <a href="#">Billing</a>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    //   <div className="user-view__content">
-    //     <div className="user-view__form-container">
-    //       <h2 className="heading-secondary ma-bt-md">Your account settings</h2>
-    //       <form className="form form-user-data">
-    //         <div className="form__group">
-    //           <label className="form__label" for="name">
-    //             Name
-    //           </label>
-    //           <input
-    //             className="form__input"
-    //             id="name"
-    //             type="text"
-    //             value="Nadav Schwartz"
-    //             required=""
-    //             name="name"
-    //           />
-    //         </div>
-
-    //         <div className="form__group ma-bt-md">
-    //           <label className="form__label" for="email">
-    //             Email address
-    //           </label>
-    //           <input
-    //             className="form__input"
-    //             id="email"
-    //             type="email"
-    //             value="nadavschwartz58@gmail.com"
-    //             required=""
-    //             name="email"
-    //           />
-    //         </div>
-    //         <MDBBtn className="btn">Save settings</MDBBtn>
-    //       </form>
-    //     </div>
-    //     <div className="line">&nbsp;</div>
-    //     <div className="user-view__form-container">
-    //       <h2 className="heading-secondary ma-bt-md">Password change</h2>
-    //       <form className="form form-user-password">
-    //         <div className="form__group">
-    //           <label className="form__label" for="password-current">
-    //             Current password
-    //           </label>
-    //           <input
-    //             className="form__input"
-    //             id="password-current"
-    //             type="password"
-    //             placeholder="••••••••"
-    //             minlength="8"
-    //           />
-    //         </div>
-    //         <div className="form__group">
-    //           <label className="form__label" for="password">
-    //             New password
-    //           </label>
-    //           <input
-    //             className="form__input"
-    //             id="password"
-    //             type="password"
-    //             placeholder="••••••••"
-    //             required=""
-    //             minlength="8"
-    //           />
-    //         </div>
-    //         <div className="form__group right">
-    //           <button className="btn btn--small btn--green btn--save-password">
-    //             Save password
-    //           </button>
-    //         </div>
-    //       </form>
-    //     </div>
-    //   </div>
-    // </div>
-
-    <MDBRow style={{ marginTop: "100px", marginLeft: "1px" }}>
+    <MDBRow
+      style={{ marginTop: "100px", marginLeft: "1px" }}
+      className="vh-100"
+    >
       <MDBCol size="3">
         <MDBTabs pills className="flex-column text-center">
           <MDBTabsItem>
