@@ -1,37 +1,43 @@
 import React from "react";
-import { MDBCarouselItem, MDBCarouselElement } from "mdb-react-ui-kit";
+import {
+  MDBCarouselItem,
+  MDBCarouselElement,
+  MDBCarouselCaption,
+} from "mdb-react-ui-kit";
 
 const ReviewCarousel = ({ TourDetails }) => {
   let index = -1;
-
   return (
     <>
       {TourDetails &&
         TourDetails.reviews.map((tour) => (
-          <MDBCarouselItem itemId={index + 1} id={index+1}>
-            <div className="testimonial">
-              <div className="avatar mx-auto mb-4">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
-                  className="rounded-circle img-fluid"
-                  alt={tour.user.name}
-                />
+          <>
+            <MDBCarouselItem itemId={(index += 1)}>
+              <div className="testimonial">
+                <div className="avatar mx-auto mb-4">
+                  <img
+                    src={tour.user.photo}
+                    alt={tour.user.name}
+                    className="rounded-circle img-fluid"
+                  />
+                </div>
               </div>
-
               <p>
-                {" "}
-                <i class="fas fa-quote-left"></i>
-                {tour.review}
+                <h4 className="font-weight-bold ">{tour.user.name}</h4>
+                <span>
+                  {" "}
+                  <i class="fas fa-quote-left"></i>
+                  {tour.review}
+                </span>
               </p>
-              <h4 className="fw-bold">{tour.user.name}</h4>
               <span>
                 <i
                   className={
                     tour.rating >= 1
-                      ? "fas fa-star gold"
+                      ? "fas fa-star text-warning"
                       : tour.rating >= 0.5
-                      ? "fas fa-star-half-alt"
-                      : "far fa-star"
+                      ? "fas fa-star-half-alt text-warning"
+                      : "far fa-star "
                   }
                 ></i>
               </span>
@@ -39,9 +45,9 @@ const ReviewCarousel = ({ TourDetails }) => {
                 <i
                   className={
                     tour.rating >= 2
-                      ? "fas fa-star"
+                      ? "fas fa-star text-warning"
                       : tour.rating >= 1.5
-                      ? "fas fa-star-half-alt"
+                      ? "fas fa-star-half-alt text-warning"
                       : "far fa-star"
                   }
                 ></i>
@@ -50,9 +56,9 @@ const ReviewCarousel = ({ TourDetails }) => {
                 <i
                   className={
                     tour.rating >= 3
-                      ? "fas fa-star"
+                      ? "fas fa-star text-warning"
                       : tour.rating >= 2.5
-                      ? "fas fa-star-half-alt"
+                      ? "fas fa-star-half-alt text-warning"
                       : "far fa-star"
                   }
                 ></i>
@@ -61,9 +67,9 @@ const ReviewCarousel = ({ TourDetails }) => {
                 <i
                   className={
                     tour.rating >= 4
-                      ? "fas fa-star"
+                      ? "fas fa-star text-warning"
                       : tour.rating >= 3.5
-                      ? "fas fa-star-half-alt"
+                      ? "fas fa-star-half-alt text-warning"
                       : "far fa-star"
                   }
                 ></i>
@@ -72,37 +78,18 @@ const ReviewCarousel = ({ TourDetails }) => {
                 <i
                   className={
                     tour.rating >= 5
-                      ? "fas fa-star"
+                      ? "fas fa-star text-warning"
                       : tour.rating >= 4.5
-                      ? "fas fa-star-half-alt"
+                      ? "fas fa-star-half-alt text-warning"
                       : "far fa-star"
                   }
                 ></i>
               </span>
-            </div>
-            <a
-              className="carousel-control-prev left carousel-control"
-              href="#carousel-example-1"
-              role="button"
-              data-slide="prev"
-            >
-              <span className="icon-prev" aria-hidden="true"></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next right carousel-control"
-              href={index+1}
-              role="button"
-              data-slide="next"
-            >
-              <span className="icon-next" aria-hidden="true"></span>
-              <span className="sr-only">Next</span>
-            </a>
-          </MDBCarouselItem>
+            </MDBCarouselItem>
+          </>
         ))}
     </>
   );
 };
 
 export default ReviewCarousel;
-//

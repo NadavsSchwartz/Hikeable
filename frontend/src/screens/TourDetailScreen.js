@@ -171,16 +171,16 @@ const TourDetailScreen = ({ history, match }) => {
           </>
         )
       )}
-      <section className="text-center my-5">
-        <h2 className="h1-responsive fw-bold my-5">Reviews</h2>
-        <div className="wrapper-carousel-fix">
-          <MDBCarousel className="no-flex testimonial-carousel slide carousel-fade">
-            <MDBCarouselInner role="listbox">
+      <MDBContainer className="text-center my-5 ">
+        <MDBRow>
+          <h2 className="h1-responsive fw-bold ">Reviews</h2>
+          <MDBCarousel showIndicators="true" showControls fade dark>
+            <MDBCarouselInner>
               <ReviewCarousel TourDetails={tour} />
             </MDBCarouselInner>
           </MDBCarousel>
-        </div>
-      </section>
+        </MDBRow>
+      </MDBContainer>
     </div>
   );
 };

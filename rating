@@ -1,0 +1,90 @@
+<span>
+                <i
+                  className={
+                    tour.rating >= 1
+                      ? "fas fa-star gold"
+                      : tour.rating >= 0.5
+                      ? "fas fa-star-half-alt"
+                      : "far fa-star"
+                  }
+                ></i>
+              </span>
+              <span>
+                <i
+                  className={
+                    tour.rating >= 2
+                      ? "fas fa-star"
+                      : tour.rating >= 1.5
+                      ? "fas fa-star-half-alt"
+                      : "far fa-star"
+                  }
+                ></i>
+              </span>
+              <span>
+                <i
+                  className={
+                    tour.rating >= 3
+                      ? "fas fa-star"
+                      : tour.rating >= 2.5
+                      ? "fas fa-star-half-alt"
+                      : "far fa-star"
+                  }
+                ></i>
+              </span>
+              <span>
+                <i
+                  className={
+                    tour.rating >= 4
+                      ? "fas fa-star"
+                      : tour.rating >= 3.5
+                      ? "fas fa-star-half-alt"
+                      : "far fa-star"
+                  }
+                ></i>
+              </span>
+              <span>
+                <i
+                  className={
+                    tour.rating >= 5
+                      ? "fas fa-star"
+                      : tour.rating >= 4.5
+                      ? "fas fa-star-half-alt"
+                      : "far fa-star"
+                  }
+                ></i>
+              </span>
+
+
+                        {/*<div className="controls-top">
+              <a
+                className="btn-floating light-blue darken-4"
+                href="#multi-item-example"
+                data-slide="prev"
+              >
+                <i className="fas fa-chevron-left"></i>
+              </a>
+              <a
+                className="btn-floating light-blue darken-4"
+                href="#multi-item-example"
+                data-slide="next"
+              >
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+             <ol className="carousel-indicators">
+              <li
+                data-target="#multi-item-example"
+                data-slide-to="0"
+                className="active light-blue darken-4"
+              ></li>
+              <li
+                data-target="#multi-item-example"
+                data-slide-to="1"
+                className="light-blue darken-4"
+              ></li>
+              <li
+                data-target="#multi-item-example"
+                data-slide-to="2"
+                className="light-blue darken-4"
+              ></li>
+            </ol> */}

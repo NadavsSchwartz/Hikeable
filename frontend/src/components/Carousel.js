@@ -1,12 +1,6 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getTopTours } from "../actions/tourActions";
-import {
-  MDBCarousel,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBCarouselElement,
-} from "mdb-react-ui-kit";
+import React from "react";
+
+import { MDBCarouselItem, MDBCarouselElement } from "mdb-react-ui-kit";
 
 const Carousel = ({ tours }) => {
   let index = -1;
