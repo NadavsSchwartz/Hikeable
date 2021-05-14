@@ -174,11 +174,12 @@ const TourDetailScreen = ({ history, match }) => {
         </MDBRow>
       </MDBContainer>
 
-      
       <MDBContainer className="text-center my-5 ">
         <MDBRow>
-          <h2 className="h1-responsive fw-bold ">Reviews</h2>
-          <MDBCarousel showIndicators="true" showControls fade dark>
+          <MDBCardHeader className="text-center mb-5" id="tour-header">
+            REVIEWS
+          </MDBCardHeader>
+          <MDBCarousel showIndicators showControls fade dark>
             <MDBCarouselInner>
               <ReviewCarousel TourDetails={tour} />
             </MDBCarouselInner>
