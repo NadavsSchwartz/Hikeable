@@ -19,6 +19,9 @@ import Message from "../components/Message";
 import MapBox from "../components/MapBox";
 import ReviewCarousel from "../components/ReviewCarousel";
 import ReviewForm from "../components/ReviewForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Stripe from "../components/Stripe";
 
 const TourDetailScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -27,6 +30,8 @@ const TourDetailScreen = ({ match }) => {
 
   const tourDetails = useSelector((state) => state.tourDetails);
   const { tour, loading, error } = tourDetails;
+
+  const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
   useEffect(() => {
     if (!tour) {
@@ -185,6 +190,12 @@ const TourDetailScreen = ({ match }) => {
         {usererror && <Message>{usererror}</Message>}
         {userload && <Loader />}
         {user ? <ReviewForm /> : <p>Log in to leave reviews</p>}
+      </MDBContainer>
+
+      <MDBContainer>
+        <Elements stripe={stripePromise}>
+          <Stripe />
+        </Elements>
       </MDBContainer>
     </div>
   );
