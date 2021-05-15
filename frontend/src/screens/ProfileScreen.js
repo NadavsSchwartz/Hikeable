@@ -8,12 +8,24 @@ import {
   MDBTabsPane,
 } from "mdb-react-ui-kit";
 import React from "react";
-import { useState } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 import MyBookings from "../components/MyBookings";
 import ProfileSettings from "../components/ProfileSettings";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ history }) => {
   const [verticalActive, setVerticalActive] = useState("settings");
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
+  useEffect(() => {
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [history, userInfo]);
 
   const handleVerticalClick = (value) => {
     if (value === verticalActive) {
@@ -27,6 +39,8 @@ const ProfileScreen = () => {
       style={{ marginTop: "100px", marginLeft: "1px" }}
       className="vh-100"
     >
+      {error && <Message>{error}</Message>}
+      {loading && <Loader />}
       <MDBCol size="3">
         <MDBTabs pills className="flex-column text-center">
           <MDBTabsItem>

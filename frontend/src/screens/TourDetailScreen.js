@@ -1,33 +1,29 @@
 import {
-  MDBCard,
   MDBCardBody,
   MDBCardFooter,
   MDBCardHeader,
-  MDBCardImage,
   MDBCardText,
   MDBCarousel,
   MDBCarouselInner,
-  MDBCol,
   MDBContainer,
   MDBRow,
 } from "mdb-react-ui-kit";
 import React from "react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTourDetails } from "../actions/tourActions";
 import Carousel from "../components/Carousel";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+
 import MapBox from "../components/MapBox";
 import ReviewCarousel from "../components/ReviewCarousel";
+import ReviewForm from "../components/ReviewForm";
 
-const TourDetailScreen = ({ history, match }) => {
+const TourDetailScreen = ({ match }) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
-  const {
-    userInfo: { user },
-  } = userLogin;
+  const { userInfo: user, loading: userload, error: usererror } = userLogin;
 
   const tourDetails = useSelector((state) => state.tourDetails);
   const { tour, loading, error } = tourDetails;
@@ -175,20 +171,20 @@ const TourDetailScreen = ({ history, match }) => {
       </MDBContainer>
 
       <MDBContainer className="text-center my-5 ">
-        <MDBRow>
-          <MDBCardHeader className="text-center mb-5" id="tour-header">
-            REVIEWS
-          </MDBCardHeader>
-          <MDBCarousel showIndicators showControls fade dark>
-            <MDBCarouselInner>
-              <ReviewCarousel TourDetails={tour} />
-            </MDBCarouselInner>
-          </MDBCarousel>
-        </MDBRow>
+        <MDBCardHeader className="text-center mb-5" id="tour-header">
+          REVIEWS
+        </MDBCardHeader>
+        <MDBCarousel showIndicators="true" classMame="mt-2" showControls dark>
+          <MDBCarouselInner>
+            <ReviewCarousel TourDetails={tour} />
+          </MDBCarouselInner>
+        </MDBCarousel>
       </MDBContainer>
 
       <MDBContainer>
-        Book
+        {usererror && <Message>{usererror}</Message>}
+        {userload && <Loader />}
+        {user ? <ReviewForm /> : <p>Log in to leave reviews</p>}
       </MDBContainer>
     </div>
   );
