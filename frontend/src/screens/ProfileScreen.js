@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import MyBookings from "../components/MyBookings";
+import MyReviews from "../components/MyReviews";
 import ProfileSettings from "../components/ProfileSettings";
 
 const ProfileScreen = ({ history }) => {
@@ -81,7 +82,10 @@ const ProfileScreen = ({ history }) => {
             <ProfileSettings />
           </MDBTabsPane>
           <MDBTabsPane show={verticalActive === "myreviews"}>
-            <h2 className="text-center mb-5">My Reviews</h2>
+            <h2 className="text-center mb-5">
+              {" "}
+              <MyReviews />
+            </h2>
           </MDBTabsPane>
           <MDBTabsPane show={verticalActive === "mybookings"}>
             <MyBookings />
