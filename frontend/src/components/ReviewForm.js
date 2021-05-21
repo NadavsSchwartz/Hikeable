@@ -1,44 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBValidation, MDBInput, MDBBtn, MDBRange } from "mdb-react-ui-kit";
-
+import { useSelector } from "react-redux";
+import Loader from "./Loader";
+import Message from "./Message";
 const ReviewForm = () => {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo, loading, error } = userLogin;
+
   const [formValue, setFormValue] = useState({
-    fname: "Mark",
-    lname: "Otto",
+    name: "",
     rating: 0,
     review: "",
   });
+
+  useEffect(() => {
+    if (userInfo.user) {
+      setFormValue({ name: userInfo.user.name });
+    }
+  }, [userInfo]);
 
   const onChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
 
   return (
-    <MDBValidation className="row g-5" noValidate>
-      <div className="col-md-6">
+    <MDBValidation className="row justify-content-center text-center" noValidate>
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
+      <div className="col-md-6 mb-2">
         <MDBInput
-          value={formValue.fname}
-          name="fname"
+          value={formValue.name}
+          name="name"
           onChange={onChange}
-          id="validationCustom01"
           required
-          label="First name"
+          label="Name"
           validation="Looks good!"
           disabled
         />
       </div>
-      <div className="col-md-6">
-        <MDBInput
-          value={formValue.lname}
-          name="lname"
-          onChange={onChange}
-          id="validationCustom02"
-          label="Last name"
-          disabled
-        />
-      </div>
 
-      <div className="col-md-6">
+      <div className="col-md-8 mb-2">
         <MDBRange
           value={formValue.rating}
           min="0"
@@ -49,8 +50,8 @@ const ReviewForm = () => {
           onChange={onChange}
         />
       </div>
-      <div className="col-md-6">
-        <label htmlFor="review">Review</label>
+      <div className="col-md-6 mb-4">
+        <label htmlFor="review ">Review</label>
         <MDBInput
           value={formValue.review}
           textarea

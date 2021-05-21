@@ -1,12 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { loadStripe } from "@stripe/stripe-js";
-import {
-  CardElement,
-  Elements,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 const Stripe = () => {
   const stripe = useStripe();
@@ -23,9 +18,9 @@ const Stripe = () => {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <MDBBtn type="submit" disabled={!stripe}>
         Pay
-      </button>
+      </MDBBtn>
     </form>
   );
 };

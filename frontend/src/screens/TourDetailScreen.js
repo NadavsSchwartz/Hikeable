@@ -31,7 +31,15 @@ const TourDetailScreen = ({ match }) => {
   const tourDetails = useSelector((state) => state.tourDetails);
   const { tour, loading, error } = tourDetails;
 
-  const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+  // const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
+  //       <MDBContainer>
+  //         <MDBCardHeader className="text-center mb-5" id="tour-header">
+  //           LEAVE A REVIEW
+  //         </MDBCardHeader>
+  //         <Elements stripe={stripePromise}>
+  //           <Stripe />
+  //         </Elements>
+  //       </MDBContainer>;
 
   useEffect(() => {
     if (!tour) {
@@ -187,15 +195,17 @@ const TourDetailScreen = ({ match }) => {
       </MDBContainer>
 
       <MDBContainer>
+        <MDBCardHeader className="text-center mb-5" id="tour-header">
+          LEAVE A REVIEW
+        </MDBCardHeader>
         {usererror && <Message>{usererror}</Message>}
         {userload && <Loader />}
         {user ? <ReviewForm /> : <p>Log in to leave reviews</p>}
       </MDBContainer>
 
+
       <MDBContainer>
-        <Elements stripe={stripePromise}>
-          <Stripe />
-        </Elements>
+        
       </MDBContainer>
     </div>
   );
