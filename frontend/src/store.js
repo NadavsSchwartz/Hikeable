@@ -5,6 +5,7 @@ import {
   getTopToursReducer,
   getTourDetailsReducer,
   getToursReducer,
+  tourReviewCreateReducer,
 } from "./reducers/tourReducers";
 import {
   userDetailsReducer,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   topTours: getTopToursReducer,
   toursInfo: getToursReducer,
   tourDetails: getTourDetailsReducer,
+  tourReviewCreate: tourReviewCreateReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

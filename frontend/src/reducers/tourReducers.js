@@ -8,6 +8,10 @@ import {
   GET_TOUR_DETAILS_REQUEST,
   GET_TOUR_DETAILS_SUCCESS,
   GET_TOUR_DETAILS_FAIL,
+  TOUR_CREATE_REVIEW_FAIL,
+  TOUR_CREATE_REVIEW_REQUEST,
+  TOUR_CREATE_REVIEW_RESET,
+  TOUR_CREATE_REVIEW_SUCCESS,
 } from "../constants/tourConstants";
 
 export const getTopToursReducer = (state = {}, action) => {
@@ -44,6 +48,21 @@ export const getTourDetailsReducer = (state = {}, action) => {
       return { loading: false, tour: action.payload };
     case GET_TOUR_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const tourReviewCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case TOUR_CREATE_REVIEW_REQUEST:
+      return { loading: true };
+    case TOUR_CREATE_REVIEW_SUCCESS:
+      return { loading: false, success: true };
+    case TOUR_CREATE_REVIEW_FAIL:
+      return { loading: false, error: action.payload };
+    case TOUR_CREATE_REVIEW_RESET:
+      return { product: {} };
     default:
       return state;
   }

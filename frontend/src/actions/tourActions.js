@@ -7,9 +7,9 @@ import {
   GET_TOURS_REQUEST,
   GET_TOURS_FAIL,
   GET_TOUR_DETAILS_FAIL,
-
   GET_TOUR_DETAILS_SUCCESS,
   GET_TOURS_DETAILS_REQUEST,
+  TOUR_CREATE_REVIEW_REQUEST,
 } from "../constants/tourConstants";
 
 export const getTopTours = () => async (dispatch) => {
@@ -59,7 +59,7 @@ export const getTours = () => async (dispatch) => {
 export const getTourDetails = (tourId) => async (dispatch) => {
   try {
     dispatch({ type: GET_TOURS_DETAILS_REQUEST });
-    
+
     const {
       data: {
         data: { data },
@@ -76,4 +76,10 @@ export const getTourDetails = (tourId) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const tourReviewCreate = (tourId) => async (dispatch) => {
+  try {
+    dispatch({ type: TOUR_CREATE_REVIEW_REQUEST });
+  } catch (error) {}
 };
