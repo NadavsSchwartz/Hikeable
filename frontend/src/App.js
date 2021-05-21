@@ -11,6 +11,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import TourDetailScreen from "./screens/TourDetailScreen";
 import Footer from "./components/Footer";
 import BookScreen from "./screens/BookScreen";
+import TourReviewsScreen from "./screens/TourReviewsScreen";
 const App = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route path="/tours/:id/book" component={BookScreen} />
+          <Route path="/tours/:id/reviews" component={TourReviewsScreen} />
           <Route path="/tours/:id" component={TourDetailScreen} />
           <Route path="/" component={HomeScreen} exact />
           <Route path="/profile" component={ProfileScreen} exact />

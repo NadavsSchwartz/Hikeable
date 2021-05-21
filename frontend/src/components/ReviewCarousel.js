@@ -15,6 +15,7 @@ const ReviewCarousel = ({ TourDetails }) => {
                     src={tour.user.photo}
                     alt={tour.user.name}
                     className="rounded-circle img-fluid"
+                    style={{maxHeight: '100px'}}
                   />
                 </div>
               </div>

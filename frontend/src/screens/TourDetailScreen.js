@@ -28,16 +28,6 @@ const TourDetailScreen = ({ match }) => {
   const tourDetails = useSelector((state) => state.tourDetails);
   const { tour, loading, error } = tourDetails;
 
-  // const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
-  //       <MDBContainer>
-  //         <MDBCardHeader className="text-center mb-5" id="tour-header">
-  //           LEAVE A REVIEW
-  //         </MDBCardHeader>
-  //         <Elements stripe={stripePromise}>
-  //           <Stripe />
-  //         </Elements>
-  //       </MDBContainer>;
-
   useEffect(() => {
     if (!tour) {
       dispatch(getTourDetails(match.params.id));
@@ -181,42 +171,22 @@ const TourDetailScreen = ({ match }) => {
       </MDBContainer>
 
       <MDBContainer className="text-center  ">
-        <MDBCardHeader className="text-center mb-5" id="tour-header">
-          REVIEWS
+        <MDBCardHeader className="text-center m-5" id="tour-header">
+          REVIEWS AND BOOKINGS
         </MDBCardHeader>
-        <MDBCarousel showIndicators showControls dark>
-          <MDBCarouselInner>
-            <ReviewCarousel TourDetails={tour} />
-          </MDBCarouselInner>
-        </MDBCarousel>
-      </MDBContainer>
-
-      <MDBContainer>
-        <MDBCardHeader className="text-center mb-5" id="tour-header">
-          LEAVE A REVIEW
-        </MDBCardHeader>
-        {usererror && <Message>{usererror}</Message>}
-        {userload && <Loader />}
-        {user ? (
-          <>
-            <ReviewForm />{" "}
-            <MDBCardHeader className="text-center m-5" id="tour-header">
-              BOOK
-            </MDBCardHeader>
-            <div className="d-flex justify-content-center mb-3">
-              {tour && (
-                <a href={`/tours/${tour.id}/book`} className="btn">
-                  Continue to Booking
-                </a>
-              )}
+        <div className="d-flex justify-content-center mb-3">
+          {tour && (
+            <div>
+              <a href={`/tours/${tour.id}/book`} className="btn">
+                Continue to Booking
+              </a>
+              <a href={`/tours/${tour.id}/reviews`} className="btn">
+                Continue to see reviews
+              </a>
             </div>
-          </>
-        ) : (
-          <p>Log in to leave reviews</p>
-        )}
+          )}
+        </div>
       </MDBContainer>
-
-      <MDBContainer></MDBContainer>
     </div>
   );
 };

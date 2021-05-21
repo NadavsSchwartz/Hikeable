@@ -78,8 +78,28 @@ export const getTourDetails = (tourId) => async (dispatch) => {
   }
 };
 
-export const tourReviewCreate = (tourId) => async (dispatch) => {
+export const tourReviewCreate = (tourId, review) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({ type: TOUR_CREATE_REVIEW_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    await axios.post(
+      `http://localhost:3000/api/v1/tours/${tourId}/reviews`,
+      review,
+      config
+    );
   } catch (error) {}
 };
