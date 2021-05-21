@@ -14,7 +14,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import ReviewForm from "../components/ReviewForm";
 
-const TourReviewsScreen = ({ match }) => {
+const TourReviewsScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const tourDetails = useSelector((state) => state.tourDetails);
@@ -24,13 +24,16 @@ const TourReviewsScreen = ({ match }) => {
   const { loading: reviewLoading, error: reviewError, userInfo } = userLogin;
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push("/");
+    }
     if (!tour) {
       dispatch(getTourDetails(match.params.id));
     }
-  }, [match, dispatch, tour]);
+  }, [match, dispatch, tour, userInfo, history]);
 
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <MDBContainer className="text-center" style={{ marginTop: "90px" }}>
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
@@ -59,7 +62,7 @@ const TourReviewsScreen = ({ match }) => {
         {userInfo && userInfo.user ? (
           <div>
             <ReviewForm />{" "}
-            <MDBCardHeader className="text-center m-5" id="tour-header">
+            {/* <MDBCardHeader className="text-center m-5" id="tour-header">
               BOOK
             </MDBCardHeader>
             <div className="d-flex justify-content-center mb-3">
@@ -68,7 +71,7 @@ const TourReviewsScreen = ({ match }) => {
                   Continue to Booking
                 </a>
               )}
-            </div>
+            </div> */}
           </div>
         ) : (
           <p>Log in to leave reviews</p>
