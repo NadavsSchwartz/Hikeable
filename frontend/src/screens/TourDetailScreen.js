@@ -1,12 +1,15 @@
 import {
+  MDBBtn,
   MDBCardBody,
   MDBCardFooter,
   MDBCardHeader,
+  MDBCardLink,
   MDBCardText,
   MDBCarousel,
   MDBCarouselInner,
   MDBContainer,
   MDBRow,
+  MDBTabsLink,
 } from "mdb-react-ui-kit";
 import React from "react";
 import { useEffect } from "react";
@@ -19,9 +22,7 @@ import Message from "../components/Message";
 import MapBox from "../components/MapBox";
 import ReviewCarousel from "../components/ReviewCarousel";
 import ReviewForm from "../components/ReviewForm";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import Stripe from "../components/Stripe";
+
 
 const TourDetailScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -143,12 +144,12 @@ const TourDetailScreen = ({ match }) => {
             <MDBCarousel
               showIndicators
               showControls
-              fade
+              dark
               style={{
                 transform: "skewY(-2deg)",
               }}
             >
-              <MDBCarouselInner>
+              <MDBCarouselInner className="d-flex">
                 <Carousel tours={tour} />
               </MDBCarouselInner>
             </MDBCarousel>
@@ -187,7 +188,7 @@ const TourDetailScreen = ({ match }) => {
         <MDBCardHeader className="text-center mb-5" id="tour-header">
           REVIEWS
         </MDBCardHeader>
-        <MDBCarousel showIndicators="true" classMame="mt-2" showControls dark>
+        <MDBCarousel showIndicators showControls dark className="d-flex">
           <MDBCarouselInner>
             <ReviewCarousel TourDetails={tour} />
           </MDBCarouselInner>
@@ -200,13 +201,26 @@ const TourDetailScreen = ({ match }) => {
         </MDBCardHeader>
         {usererror && <Message>{usererror}</Message>}
         {userload && <Loader />}
-        {user ? <ReviewForm /> : <p>Log in to leave reviews</p>}
+        {user ? (
+          <>
+            <ReviewForm />{" "}
+            <MDBCardHeader className="text-center m-5" id="tour-header">
+              BOOK
+            </MDBCardHeader>
+            <div className="d-flex justify-content-center mb-3">
+              {tour && (
+                <a href={`/tours/${tour.id}/book`} className="btn">
+                  Continue to Booking
+                </a>
+              )}
+            </div>
+          </>
+        ) : (
+          <p>Log in to leave reviews</p>
+        )}
       </MDBContainer>
 
-
-      <MDBContainer>
-        
-      </MDBContainer>
+      <MDBContainer></MDBContainer>
     </div>
   );
 };

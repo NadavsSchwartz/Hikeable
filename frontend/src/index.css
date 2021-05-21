@@ -1,44 +1,44 @@
-body,
-html {
-    height: 100%;
-}
-
-.intro {
-    background: url("http://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.map-container {
-    height: 700px;
-    transform: skewY(-2deg);
-}
-
-.marker {
-    background-image: url('https://i.ibb.co/y8dtLSF/pin.png');
-    background-size: cover;
-    width: 32px;
-    height: 40px;
-    cursor: pointer;
-}
-
-.mapboxgl-popup {
-    max-width: 25rem;
-}
-
-.mapboxgl-popup-content {
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    padding: 1rem !important;
-    font-size: 1rem;
-    transform: skewY(2deg);
-    -webkit-box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.15) !important;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
-}
-
-.footer {
-    position: relative;
-    width: 100%;
-}
+                body,
+                html {
+                    height: 100%;
+                }
+                
+                .intro {
+                    background: url("http://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20%283%29.jpg")no-repeat center center fixed;
+                    height: 100vh;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                
+                .map-container {
+                    height: 700px;
+                    transform: skewY(-2deg);
+                }
+                
+                .marker {
+                    background-image: url('https://i.ibb.co/y8dtLSF/pin.png');
+                    background-size: cover;
+                    width: 32px;
+                    height: 40px;
+                    cursor: pointer;
+                }
+                
+                .mapboxgl-popup {
+                    max-width: 25rem;
+                }
+                
+                .mapboxgl-popup-content {
+                    text-align: center;
+                    font-family: 'Lato', sans-serif;
+                    padding: 1rem !important;
+                    font-size: 1rem;
+                    transform: skewY(2deg);
+                    -webkit-box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.15) !important;
+                    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+                }
+                
+                .footer {
+                    position: relative;
+                    width: 100%;
+                }
