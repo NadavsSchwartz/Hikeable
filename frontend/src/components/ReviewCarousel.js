@@ -10,7 +10,7 @@ const ReviewCarousel = ({ TourDetails }) => {
           <>
             <MDBCarouselItem itemId={(index += 1)}>
               <div className="testimonial">
-                <div className="avatar mx-auto mb-4">
+                <div className="avatar mx-auto ">
                   <img
                     src={tour.user.photo}
                     alt={tour.user.name}
@@ -18,7 +18,7 @@ const ReviewCarousel = ({ TourDetails }) => {
                   />
                 </div>
               </div>
-              <p className="mb-5">
+              <p className="">
                 <h4 className="font-weight-bold ">{tour.user.name}</h4>
                 <span>
                   {" "}

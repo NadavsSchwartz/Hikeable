@@ -1,5 +1,4 @@
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardLink,

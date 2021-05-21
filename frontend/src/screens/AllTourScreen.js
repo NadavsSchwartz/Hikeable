@@ -1,5 +1,5 @@
 import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getTours } from "../actions/tourActions";

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Loader from "./Loader";
 import Message from "./Message";
 
 const MyReviews = ({ history }) => {
-  const dispatch = useDispatch();
-
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 

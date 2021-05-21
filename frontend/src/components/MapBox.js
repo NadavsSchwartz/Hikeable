@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import React, { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 

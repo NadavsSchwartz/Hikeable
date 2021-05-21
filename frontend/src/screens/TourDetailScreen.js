@@ -1,15 +1,12 @@
 import {
-  MDBBtn,
   MDBCardBody,
   MDBCardFooter,
   MDBCardHeader,
-  MDBCardLink,
   MDBCardText,
   MDBCarousel,
   MDBCarouselInner,
   MDBContainer,
   MDBRow,
-  MDBTabsLink,
 } from "mdb-react-ui-kit";
 import React from "react";
 import { useEffect } from "react";
@@ -22,7 +19,6 @@ import Message from "../components/Message";
 import MapBox from "../components/MapBox";
 import ReviewCarousel from "../components/ReviewCarousel";
 import ReviewForm from "../components/ReviewForm";
-
 
 const TourDetailScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -184,11 +180,11 @@ const TourDetailScreen = ({ match }) => {
         </MDBRow>
       </MDBContainer>
 
-      <MDBContainer className="text-center my-5 ">
+      <MDBContainer className="text-center  ">
         <MDBCardHeader className="text-center mb-5" id="tour-header">
           REVIEWS
         </MDBCardHeader>
-        <MDBCarousel showIndicators showControls dark className="d-flex">
+        <MDBCarousel showIndicators showControls dark>
           <MDBCarouselInner>
             <ReviewCarousel TourDetails={tour} />
           </MDBCarouselInner>
