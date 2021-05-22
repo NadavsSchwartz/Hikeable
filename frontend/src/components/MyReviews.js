@@ -17,9 +17,9 @@ const MyReviews = ({ history }) => {
     <div>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      {userInfo && userInfo.user.reviews
+      {/* {userInfo && userInfo.user
         ? `You have ${userInfo.user.reviews.length} Reviews!`
-        : `You currently don't have any reviews`}
+        : `You currently don't have any reviews`} */}
     </div>
   );
 };

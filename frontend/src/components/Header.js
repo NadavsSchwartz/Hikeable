@@ -46,13 +46,13 @@ const Header = () => {
           className="ms-auto"
           show={showNavNoTogglerSecond}
         >
-          {userInfo && userInfo ? (
+          {userInfo && userInfo.user ? (
             <MDBNavbarNav
               right
               className="d-flex justify-content-end align-items-center"
             >
               <MDBNavbarLink href="/profile" className="text-success">
-                {userInfo.user.name}
+                {userInfo && userInfo.user.name}
               </MDBNavbarLink>
               <MDBNavbarLink href="/tours" className="text-success">
                 All Tours

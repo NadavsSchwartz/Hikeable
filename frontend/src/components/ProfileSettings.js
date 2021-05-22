@@ -7,12 +7,13 @@ import {
 } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { updateUserProfile } from "../actions/userActions";
 
 import Loader from "./Loader";
 import Message from "./Message";
 
 const ProfileSettings = ({ history, location }) => {
-  const [name, setName] = useState("");
+  const [userName, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const ProfileSettings = ({ history, location }) => {
   }, [userInfo, history]);
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch();
+    dispatch(updateUserProfile({ name: userName }));
   };
   return (
     <MDBContainer className="mt-5">
@@ -47,7 +48,7 @@ const ProfileSettings = ({ history, location }) => {
               type="name"
               id="name"
               className="form-control"
-              value={name}
+              value={userName}
               onChange={(e) => setName(e.target.value)}
             />
             <br />
