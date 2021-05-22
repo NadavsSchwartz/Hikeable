@@ -7,26 +7,38 @@ import {
 } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserProfile } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 import Loader from "./Loader";
 import Message from "./Message";
 
-const ProfileSettings = ({ history, location }) => {
-  const [userName, setName] = useState("");
+const ProfileSettings = ({ history }) => {
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const { userInfo } = userLogin;
+
+  const userDetails = useSelector((state) => state.userDetails);
+  const { loading, error, user } = userDetails;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
       history.push("/");
     } else {
-      setName(userInfo.user.name);
+      if (!user || !user.data || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+        dispatch(getUserDetails());
+      } else {
+        setUserName(user.data.name);
+      }
     }
-  }, [userInfo, history]);
+  }, [userInfo, history, user, success, dispatch]);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(updateUserProfile({ name: userName }));
@@ -49,7 +61,7 @@ const ProfileSettings = ({ history, location }) => {
               id="name"
               className="form-control"
               value={userName}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <br />
             <label htmlFor="password" className="grey-text ">
