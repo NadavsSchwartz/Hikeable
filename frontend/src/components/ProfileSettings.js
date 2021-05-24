@@ -31,11 +31,11 @@ const ProfileSettings = ({ history }) => {
     if (!userInfo) {
       history.push("/login");
     } else {
-      if (!user || !user.data || success) {
+      if (!userInfo.user || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails());
       } else {
-        setUserName(user.data.name);
+        setUserName(userInfo.user.name);
       }
     }
   }, [userInfo, history, user, success, dispatch]);
