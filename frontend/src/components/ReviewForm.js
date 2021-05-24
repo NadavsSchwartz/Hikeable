@@ -3,27 +3,24 @@ import { MDBValidation, MDBInput, MDBBtn, MDBRange } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
 import Loader from "./Loader";
 import Message from "./Message";
+import { tourReviewCreate } from "../actions/tourActions";
 const ReviewForm = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
 
-  const [formValue, setFormValue] = useState({
-    name: "",
+  const [reviewForm, setReviewForm] = useState({
     rating: 0,
     review: "",
   });
 
-  useEffect(() => {
-    if (userInfo.user) {
-      setFormValue({ name: userInfo.user.name });
-    }
-  }, [userInfo]);
+  useEffect(() => {}, [userInfo]);
 
   const onChange = (e) => {
-    setFormValue({ ...formValue, [e.target.name]: e.target.value });
+    setReviewForm({ ...reviewForm, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    tourReviewCreate();
   };
 
   return (
@@ -34,21 +31,10 @@ const ReviewForm = () => {
       >
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
-        <div className="col-md-6 mb-2">
-          <MDBInput
-            value={formValue.name}
-            name="name"
-            onChange={onChange}
-            required
-            label="Name"
-            validation="Looks good!"
-            disabled
-          />
-        </div>
 
         <div className="col-md-8 mb-2">
           <MDBRange
-            value={formValue.rating}
+            value={reviewForm.rating}
             min="0"
             max="5"
             name="rating"
@@ -60,7 +46,7 @@ const ReviewForm = () => {
         <div className="col-md-6 mb-4">
           <label htmlFor="review ">Review</label>
           <MDBInput
-            value={formValue.review}
+            value={reviewForm.review}
             textarea
             name="review"
             onChange={onChange}

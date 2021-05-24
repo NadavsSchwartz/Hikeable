@@ -4,51 +4,65 @@ import {
   MDBCarousel,
   MDBCarouselInner,
   MDBContainer,
+  MDBInput,
+  MDBRange,
 } from "mdb-react-ui-kit";
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import ReviewCarousel from "../components/ReviewCarousel";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTourDetails } from "../actions/tourActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import ReviewForm from "../components/ReviewForm";
+import { tourReviewCreate } from "../actions/tourActions";
 
 const TourReviewsScreen = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const tourDetails = useSelector((state) => state.tourDetails);
-  const { tour, loading, error } = tourDetails;
+  const { tour: currentTour, loading, error } = tourDetails;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading: reviewLoading, error: reviewError, userInfo } = userLogin;
 
+  const [reviewForm, setReviewForm] = useState({
+    rating: 0,
+    review: "",
+  });
+
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/");
-    }
-    if (!tour) {
+    if (!currentTour) {
       dispatch(getTourDetails(match.params.id));
     }
-  }, [match, dispatch, tour, userInfo, history]);
+  }, [match, dispatch, userInfo, history, currentTour]);
+
+  const onChange = (e) => {
+    setReviewForm({ ...reviewForm, [e.target.name]: e.target.value });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div style={{ height: "100vh" }}>
       <MDBContainer className="text-center" style={{ marginTop: "90px" }}>
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
-        {tour && (
+        {currentTour && (
           <div className="d-flex justify-content-start">
-            <MDBBtn href={`/tours/${tour.id}`}>back</MDBBtn>
+            <MDBBtn href={`/tours/${currentTour.id}`}>back</MDBBtn>
           </div>
         )}
 
         <MDBCardHeader className="text-center mb-5" id="tour-header">
           REVIEWS
         </MDBCardHeader>
-        <MDBCarousel showIndicators showControls dark>
+        <MDBCarousel showIndicators="true" showControls dark>
           <MDBCarouselInner>
-            <ReviewCarousel TourDetails={tour} />
+            {currentTour &&
+              currentTour.reviews.map((tour, index) => (
+                <ReviewCarousel tour={tour} key={tour._id} index={index} />
+              ))}
           </MDBCarouselInner>
         </MDBCarousel>
       </MDBContainer>
@@ -61,17 +75,39 @@ const TourReviewsScreen = ({ match, history }) => {
         {reviewLoading && <Loader />}
         {userInfo && userInfo.user ? (
           <div>
-            <ReviewForm />{" "}
-            {/* <MDBCardHeader className="text-center m-5" id="tour-header">
-              BOOK
-            </MDBCardHeader>
-            <div className="d-flex justify-content-center mb-3">
-              {tour && (
-                <a href={`/tours/${tour.id}/book`} className="btn">
-                  Continue to Booking
-                </a>
-              )}
-            </div> */}
+            <form onSubmit={onSubmit}>
+              <div className="row justify-content-center text-center">
+                {error && <Message variant="danger">{error}</Message>}
+                {loading && <Loader />}
+
+                <div className="col-md-8 mb-2">
+                  <MDBRange
+                    value={reviewForm.rating}
+                    min="0"
+                    max="5"
+                    name="rating"
+                    step="1"
+                    label="Rating"
+                    onChange={onChange}
+                  />
+                </div>
+                <div className="col-md-6 mb-4">
+                  <label htmlFor="review ">Review</label>
+                  <MDBInput
+                    value={reviewForm.review}
+                    textarea
+                    name="review"
+                    onChange={onChange}
+                    rows={2}
+                    required
+                  />
+                </div>
+
+                <div className="col-12 text-center">
+                  <MDBBtn type="submit">Submit Review</MDBBtn>
+                </div>
+              </div>
+            </form>
           </div>
         ) : (
           <p>Log in to leave reviews</p>

@@ -42,7 +42,7 @@ const Header = () => {
         </MDBNavbarToggler>
         <MDBCollapse
           navbar
-          right
+          right="true"
           className="ms-auto"
           show={showNavNoTogglerSecond}
         >
