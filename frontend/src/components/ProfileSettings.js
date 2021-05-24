@@ -29,7 +29,7 @@ const ProfileSettings = ({ history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/");
+      history.push("/login");
     } else {
       if (!user || !user.data || success) {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });

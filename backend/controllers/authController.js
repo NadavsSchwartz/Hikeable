@@ -6,12 +6,12 @@ import catchAsync from "./../utils/catchAsync.js";
 import AppError from "./../utils/appError.js";
 import sendEmail from "./../utils/email.js";
 
-const signToken = (id) =>
+export const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-const createSendToken = (user, statusCode, res) => {
+export const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(

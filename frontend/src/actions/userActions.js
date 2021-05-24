@@ -90,7 +90,7 @@ export const register = (name, email, password, passwordConfirm) => async (
       payload: data,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    localStorage.setItem("userInfo", JSON.stringify(data.data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -108,13 +108,11 @@ export const getUserDetails = () => async (dispatch, getState) => {
       type: USER_DETAILS_REQUEST,
     });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+    const userInfo = localStorage.getItem("userInfo");
 
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${JSON.parse(userInfo).token}`,
       },
     };
 
@@ -125,14 +123,14 @@ export const getUserDetails = () => async (dispatch, getState) => {
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
-      payload: data.data,
+      payload: data.data.user,
     });
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
-    if (message === "Not authorized, token failed") {
+    if (message === "Network Error") {
       dispatch(logout());
     }
     dispatch({
@@ -148,14 +146,12 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_PROFILE_REQUEST,
     });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+    const userInfo = localStorage.getItem("userInfo");
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${JSON.parse(userInfo).token}`,
       },
     };
 
@@ -173,7 +169,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_LOGIN_SUCCESS,
       payload: data.data,
     });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    localStorage.setItem("userInfo", JSON.stringify(data.data));
   } catch (error) {
     const message =
       error.response && error.response.data.message
