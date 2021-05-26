@@ -10,6 +10,7 @@ import {
   GET_TOUR_DETAILS_SUCCESS,
   GET_TOURS_DETAILS_REQUEST,
   TOUR_CREATE_REVIEW_REQUEST,
+  TOUR_CREATE_REVIEW_SUCCESS,
 } from "../constants/tourConstants";
 
 export const getTopTours = () => async (dispatch) => {
@@ -78,7 +79,7 @@ export const getTourDetails = (tourId) => async (dispatch) => {
   }
 };
 
-export const tourReviewCreate = (tourId, review) => async (dispatch) => {
+export const createTourReview = (review) => async (dispatch) => {
   try {
     dispatch({ type: TOUR_CREATE_REVIEW_REQUEST });
 
@@ -87,10 +88,23 @@ export const tourReviewCreate = (tourId, review) => async (dispatch) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${JSON.parse(userInfo).token}`,
       },
     };
 
-    await axios.post(`http://localhost:3000/api/v1/reviews`, review, config);
-  } catch (error) {}
+    const { data } = await axios.post(
+      `http://localhost:3000/api/v1/reviews`,
+      review,
+      config
+    );
+    dispatch({ type: TOUR_CREATE_REVIEW_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_TOUR_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };

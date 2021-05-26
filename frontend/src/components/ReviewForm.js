@@ -3,7 +3,7 @@ import { MDBValidation, MDBInput, MDBBtn, MDBRange } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
 import Loader from "./Loader";
 import Message from "./Message";
-import { tourReviewCreate } from "../actions/tourActions";
+import { createTourReview } from "../actions/tourActions";
 const ReviewForm = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;
@@ -20,7 +20,6 @@ const ReviewForm = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    tourReviewCreate();
   };
 
   return (

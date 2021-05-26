@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTourDetails } from "../actions/tourActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { tourReviewCreate } from "../actions/tourActions";
+import { createTourReview } from "../actions/tourActions";
 
 const TourReviewsScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -25,22 +25,47 @@ const TourReviewsScreen = ({ match, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading: reviewLoading, error: reviewError, userInfo } = userLogin;
 
+  const tourReviewCreate = useSelector((state) => state.tourReviewCreate);
+  const {
+    error: errortourReview,
+    success: successtourReview,
+  } = tourReviewCreate;
   const [reviewForm, setReviewForm] = useState({
     rating: 0,
     review: "",
+    user: "",
+    tour: "",
   });
 
   useEffect(() => {
+    if (successtourReview) {
+      <Message style={{ marginTop: "100px" }}>'Review Submitted'</Message>;
+    }
     if (!currentTour) {
       dispatch(getTourDetails(match.params.id));
+      setReviewForm({
+        ...reviewForm,
+        user: userInfo.user._id,
+        tour: match.params.id,
+      });
     }
-  }, [match, dispatch, userInfo, history, currentTour]);
+  }, [
+    match,
+    dispatch,
+    userInfo,
+    history,
+    currentTour,
+    reviewForm,
+    successtourReview,
+  ]);
 
   const onChange = (e) => {
     setReviewForm({ ...reviewForm, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
+
+    dispatch(createTourReview(reviewForm));
   };
 
   return (
