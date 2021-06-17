@@ -53,12 +53,11 @@ const HomeScreen = () => {
         </div>
       </div>
       <AboutSection />
+      <div style={{ paddingTop: "50px" }}></div>
       {loading ? (
-        <Loader style={{ marginTop: "200px" }} />
+        <Loader />
       ) : error ? (
-        <Message style={{ marginTop: "200px" }} variant="danger">
-          {error}
-        </Message>
+        <Message variant="danger">{error}</Message>
       ) : (
         <MDBContainer style={{ marginTop: "200px" }}>
           <h1 className="d-flex justify-content-center">TOP TOURS</h1>

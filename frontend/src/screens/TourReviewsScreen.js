@@ -72,7 +72,7 @@ const TourReviewsScreen = ({ match, history }) => {
     <div style={{ height: "100vh" }}>
       <MDBContainer className="text-center" style={{ marginTop: "90px" }}>
         {error && <Message variant="danger">{error}</Message>}
-        {loading && <Loader />}
+        <div style={{ marginTop: "200px" }}>{loading && <Loader />}</div>
         {currentTour && (
           <div className="d-flex justify-content-start">
             <MDBBtn href={`/tours/${currentTour.id}`}>back</MDBBtn>

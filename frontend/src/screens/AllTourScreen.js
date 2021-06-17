@@ -1,5 +1,5 @@
 import { MDBRow, MDBCol, MDBContainer } from "mdb-react-ui-kit";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { getTours } from "../actions/tourActions";
@@ -17,13 +17,32 @@ const AllTourScreen = () => {
     dispatch(getTours());
   }, [dispatch]);
   return (
-    <>
+    <div style={{ paddingTop: "80px" }}>
+      <div className="position-relative">
+        <img
+          src="/alltours500x1700.png"
+          alt="trail"
+          className=" shadow-4"
+          style={{ minHeight: "150px", maxHeight: "500px", maxWidth: "100%" }}
+        />
+        <div
+          className="mask"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        ></div>
+        <h1 className="position-absolute top-50 start-50 translate-middle shadow-5 text-white fw-bold border-bottom display-2">
+          FIND YOUR NEXT TRIP
+        </h1>
+      </div>
       {loading ? (
-        <Loader />
+        <div style={{ marginTop: "100px", textAlign: "center" }}>
+          <Loader />
+        </div>
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <div style={{ marginTop: "100px", textAlign: "center" }}>
+          <Message variant="danger">{error}</Message>
+        </div>
       ) : (
-        <MDBContainer>
+        <MDBContainer style={{ marginTop: "20px" }}>
           <MDBRow className="d-flex justify-content-center">
             {tours &&
               tours.map((tour) => (
@@ -38,7 +57,7 @@ const AllTourScreen = () => {
           </MDBRow>
         </MDBContainer>
       )}
-    </>
+    </div>
   );
 };
 

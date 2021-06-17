@@ -37,9 +37,13 @@ const TourDetailScreen = ({ match }) => {
   return (
     <div className="container">
       {loading ? (
-        <Loader style={{ marginTop: "200px" }} />
+        <div style={{ marginTop: "100px" }}>
+          <Loader />
+        </div>
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <div style={{ marginTop: "100px" }}>
+          <Message variant="danger">{error}</Message>
+        </div>
       ) : (
         tour && (
           <>

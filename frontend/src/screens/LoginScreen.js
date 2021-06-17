@@ -30,7 +30,6 @@ const LoginScreen = ({ history, location }) => {
             <p className="h4 text-center mb-4">Sign in</p>
 
             {error && <Message variant="danger">{error}</Message>}
-            {loading && <Loader />}
 
             <label htmlFor="email" className="grey-text">
               Your email
@@ -55,7 +54,7 @@ const LoginScreen = ({ history, location }) => {
             />
             <div className="text-center mt-4">
               <MDBBtn color="white" type="submit">
-                Login
+                {loading && <Loader />}Login
               </MDBBtn>
             </div>
           </form>

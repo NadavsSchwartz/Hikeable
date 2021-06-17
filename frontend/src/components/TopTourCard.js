@@ -16,6 +16,7 @@ const TopTourCard = ({ tour }) => {
           src={tour.imageCover}
           alt={tour.name}
           className="img-fluid card-image"
+          style={{ minHeight: "300px" }}
         />
       </div>
       <MDBCardBody>
