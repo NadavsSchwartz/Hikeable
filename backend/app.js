@@ -9,6 +9,7 @@ import rateLimit from "express-rate-limit";
 import xss from "xss-clean";
 import cors from "cors";
 import reviewRouter from "./routes/reviewRoutes.js";
+import bookingRouter from "./routes/bookingRoutes.js";
 import tourRouter from "./routes/tourRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import AppError from "./utils/appError.js";
@@ -70,6 +71,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/reviews", reviewRouter);
+app.use("/api/v1/booking", bookingRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
