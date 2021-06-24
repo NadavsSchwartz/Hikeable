@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-export const Welcome = (name, url) => `<!doctype html>
+export const passwordReset = (name, url) => `<!doctype html>
 <html>
 
 <head>
@@ -109,7 +109,7 @@ export const Welcome = (name, url) => `<!doctype html>
                                     <tr>
                                         <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
                                             <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi there, ${name}</p>
-                                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Welcome to Hikeable, We are happy to welcome you to our family.</p>
+                                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">We've Heard you forgot your password.</p>
                                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
                           <tbody>
                             <tr>
@@ -117,7 +117,7 @@ export const Welcome = (name, url) => `<!doctype html>
                                 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
                                   <tbody>
                                     <tr>
-                                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #39945f; border-radius: 5px; text-align: center;"> <a href=${url} target="_blank" style="display: inline-block; color: #ffffff; background-color: #1e8549; border: solid 1px #1d8551; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #146633;">Hikeable</a> </td>
+                                      <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #39945f; border-radius: 5px; text-align: center;"> <a href=${url} target="_blank" style="display: inline-block; color: #ffffff; background-color: #1e8549; border: solid 1px #1d8551; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #146633;">CLICK HERE TO RESET PASSWORD</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -125,8 +125,8 @@ export const Welcome = (name, url) => `<!doctype html>
                             </tr>
                           </tbody>
                         </table>
-                                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Feel free to check out the top tours and start one with any one of our</p>
-                                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Professional Guides.</p>
+                                            <p style="font-family: sans-serif; font-size: 16px; font-weight: bold; margin: 0; Margin-bottom: 15px;">The link is only valid for 10 minutes.</p>
+                                            <p style="font-family: sans-serif; font-size: 14px; font-weight: bold; margin: 0; Margin-bottom: 15px;">Didn't request this email? Ignore it or contact us right away.</p>
                                         </td>
                                     </tr>
                                 </table>

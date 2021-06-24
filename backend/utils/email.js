@@ -1,5 +1,6 @@
 import { createTransport } from "nodemailer";
 import { Welcome } from "../public/views/email/welcome.js";
+import { passwordReset } from "../public/views/passwordReset.js";
 
 export default class Email {
   constructor(user, url) {
@@ -25,7 +26,7 @@ export default class Email {
   }
 
   async send(template, subject) {
-    const html = Welcome;
+    const html = template;
     const mailOptions = {
       from: this.from,
       to: this.to,
@@ -37,7 +38,14 @@ export default class Email {
   }
 
   async sendWelcome() {
-    await this.send("Welcome", "Welcome to Hikeable");
+    await this.send(Welcome(this.firstName, this.url), "Welcome to Hikeable!");
+  }
+
+  async sendPasswordReset() {
+    await this.send(
+      passwordReset(this.firstName, this.url),
+      "Your Password Reset Request"
+    );
   }
 }
 
