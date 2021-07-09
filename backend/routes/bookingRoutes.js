@@ -1,10 +1,21 @@
+/* eslint-disable import/extensions */
 import express from "express";
-import { protect, restrictTo } from "../controllers/authController.js";
-import { getCheckoutSession } from "../controllers/bookingController.js";
+import { protect } from "../controllers/authController.js";
+import {
+  deleteBooking,
+  getAllBookings,
+  getBooking,
+  getCheckoutSession,
+  getSessionUserDetails,
+  updateBooking,
+} from "../controllers/bookingController.js";
 // import { updateOne } from "../controllers/handlerFactory.js";
 
 const router = express.Router();
 
-router.get("/checkout-session/:tourID", protect, getCheckoutSession);
+router.post("/checkout-session/:tourID", protect, getCheckoutSession);
+router.post("/order/success", protect, getSessionUserDetails);
+router.get("/", protect, getAllBookings);
 
+router.route("/:id").get(getBooking).patch(updateBooking).delete(deleteBooking);
 export default router;

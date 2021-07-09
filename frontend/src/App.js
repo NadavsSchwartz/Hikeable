@@ -12,6 +12,7 @@ import TourDetailScreen from "./screens/TourDetailScreen";
 import Footer from "./components/Footer";
 import BookScreen from "./screens/BookScreen";
 import TourReviewsScreen from "./screens/TourReviewsScreen";
+import SuccessScreen from "./screens/SuccessScreen";
 const App = () => {
   return (
     <>
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/tours" component={AllTourScreen} exact />
           <Route path="/login" component={LoginScreen} />
           <Route path="/signup" component={RegisterScreen} />
+          <Route path="/success" component={SuccessScreen} />
         </Switch>
       </Router>
       <Footer />

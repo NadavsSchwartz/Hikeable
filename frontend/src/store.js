@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { bookingReducer } from "./reducers/bookingReducers";
 import {
   getTopToursReducer,
   getTourDetailsReducer,
@@ -18,11 +19,12 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
   topTours: getTopToursReducer,
   toursInfo: getToursReducer,
   tourDetails: getTourDetailsReducer,
   tourReviewCreate: tourReviewCreateReducer,
-  userUpdateProfile: userUpdateProfileReducer,
+  tourBooking: bookingReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

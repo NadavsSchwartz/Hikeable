@@ -10,7 +10,7 @@ import React from "react";
 
 const TopTourCard = ({ tour }) => {
   return (
-    <MDBCard className=" mt-5 ">
+    <MDBCard className="mt-5 border" style={{ backgroundColor: "#f5f5f5" }}>
       <div className="bg-image ">
         <img
           src={tour.imageCover}
@@ -21,7 +21,7 @@ const TopTourCard = ({ tour }) => {
       </div>
       <MDBCardBody>
         <MDBCardTitle
-          className="text-success "
+          className="text-success fw-bold"
           style={{
             fontSize: "1.5rem",
             fontWeight: "400",

@@ -23,13 +23,13 @@ const AllTourScreen = () => {
           src="/alltours500x1700.png"
           alt="trail"
           className=" shadow-4"
-          style={{ minHeight: "150px", maxHeight: "500px", maxWidth: "100%" }}
+          style={{ minHeight: "150px", maxHeight: "500px", width: "100%" }}
         />
         <div
           className="mask"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         ></div>
-        <h1 className="position-absolute top-50 start-50 translate-middle shadow-5 text-white fw-bold border-bottom display-2">
+        <h1 className="position-absolute top-50 start-50 translate-middle shadow-5 text-white fw-bold w-100 text-center border-bottom display-2">
           FIND YOUR NEXT TRIP
         </h1>
       </div>

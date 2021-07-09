@@ -59,13 +59,13 @@ const HomeScreen = () => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <MDBContainer style={{ marginTop: "200px" }}>
+        <MDBContainer style={{ marginTop: "100px" }}>
           <h1 className="d-flex justify-content-center">TOP TOURS</h1>
           <MDBRow className="d-flex justify-content-center">
             {tours &&
               tours.map((tour) => (
                 <MDBCol
-                  className="col-lg-4 col-md-4 col-sm-12"
+                  className="col-lg-4 col-md-4 col-sm-12 "
                   style={{ minWidth: "340px" }}
                 >
                   <TopTourCard tour={tour} />

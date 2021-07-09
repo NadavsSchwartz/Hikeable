@@ -57,7 +57,7 @@
                 background-image: linear-gradient( to right bottom, rgba($color-primary-light, 0.7), rgba($color-primary-dark, 0.7)), url("https://hdwallpaperim.com/wp-content/uploads/2017/08/23/458900-nature-photography-landscape-waterfall-lake-mountains-snow-clouds-sky-Norway-sunrise-hiking-748x502.jpg");
                 background-size: cover;
                 transform: skewY(-5deg);
-                margin-top: 15rem;
+                margin-top: 10rem;
                 @include respond(tab-port) {
                     padding: 10rem 0;
                 }

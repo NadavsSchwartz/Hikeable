@@ -155,7 +155,7 @@ const TourDetailScreen = ({ match }) => {
           {tour &&
             tour.guides.map((tourGuide) => (
               <>
-                <div className="col-6 mt-5">
+                <div className="col-4 mt-5">
                   <div className="col-12">
                     <img
                       className="img-fluid rounded-circle"
@@ -164,10 +164,10 @@ const TourDetailScreen = ({ match }) => {
                     />
                   </div>
 
-                  <p className="text-muted text-center col-12">
+                  <p className="text-muted text-center col-12 small">
                     {tourGuide.role.toUpperCase()}
-                    <p className="ms-1">{tourGuide.name}</p>
                   </p>
+                  <p className="text-center strong">{tourGuide.name}</p>
                 </div>
               </>
             ))}

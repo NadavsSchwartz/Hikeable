@@ -1,4 +1,6 @@
+/* eslint-disable import/extensions */
 import { createTransport } from "nodemailer";
+
 import { Welcome } from "../public/views/email/welcome.js";
 import { passwordReset } from "../public/views/passwordReset.js";
 
@@ -12,8 +14,13 @@ export default class Email {
 
   newTransport() {
     if (process.env.NODE_ENV === "production") {
-      //sendgrid
-      return 1;
+      return createTransport({
+        service: "SendGrid",
+        auth: {
+          user: "apikey",
+          pass: process.env.SENDGRID_API_KEY,
+        },
+      });
     }
     return createTransport({
       host: process.env.EMAIL_HOST,
