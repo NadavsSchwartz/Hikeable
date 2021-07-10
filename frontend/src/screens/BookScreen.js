@@ -7,7 +7,7 @@ import Stripe from "../components/Stripe";
 
 const BookScreen = ({ match, history }) => {
   const tourId = match.params.id;
-  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_SECRET_KEYS);
+  const stripePromise = loadStripe(process.env.STRIPE_PUBLISHABLE_KEY);
   return (
     <MDBContainer style={{ marginTop: "110px", height: "100vh" }}>
       <MDBBtn href={`/tours/${tourId}`}>back</MDBBtn>

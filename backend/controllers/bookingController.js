@@ -23,11 +23,11 @@ export const getCheckoutSession = catchAsync(async (req, res, next) => {
     success_url: `${req.protocol}://localhost:3001/success?session_id={CHECKOUT_SESSION_ID}"`,
     cancel_url: `${req.protocol}://${req.get("host")}/tour/${tour.slug}`,
     customer_email: req.user.email,
-    client_reference_id: req.params.tourId,
+    client_reference_id: req.params.tourID,
     line_items: [
       {
         name: `${tour.name} Tour`,
-        description: `${tour.summary}`,
+        description: tour.summary,
         images: [
           `${req.protocol}://${req.get("host")}/img/tours/${tour.imageCover}`,
         ],
