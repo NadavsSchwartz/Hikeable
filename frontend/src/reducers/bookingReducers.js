@@ -1,4 +1,8 @@
-import { BOOKING_PAYMENT_FAIL, BOOKING_PAYMENT_REQUEST, BOOKING_PAYMENT_SUCCESS } from "../constants/bookingConstants";
+import {
+  BOOKING_PAYMENT_FAIL,
+  BOOKING_PAYMENT_REQUEST,
+  BOOKING_PAYMENT_SUCCESS,
+} from "../constants/bookingConstants";
 
 export const bookingReducer = (state = {}, action) => {
   switch (action.type) {
@@ -12,3 +16,5 @@ export const bookingReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const getUsersBookingsReducer = () => {};

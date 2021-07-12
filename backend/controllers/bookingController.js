@@ -20,7 +20,7 @@ export const getCheckoutSession = catchAsync(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     // success_url: `${req.protocol}://${req.get("host")}/`,
-    success_url: `${req.protocol}://localhost:3001/success?session_id={CHECKOUT_SESSION_ID}"`,
+    success_url: `${req.protocol}://localhost:3001/success?session_id={CHECKOUT_SESSION_ID}&tour=${req.params.tourID}&user=${req.user.id}&price=${tour.price}"`,
     cancel_url: `${req.protocol}://${req.get("host")}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourID,
@@ -44,20 +44,19 @@ export const getCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-export const createBookingCheckout = async (session) => {
+export const createBookingCheckout = async (sessionID) => {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  const session = await stripe.checkout.sessions.retrieve(sessionID);
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
-  const price = session.display_items[0].amount / 100;
+  const price = session.amount_total / 100;
   await Booking.create({ tour, user, price });
 };
 
 export const getSessionUserDetails = catchAsync(async (req, res) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-
-  const customer = await stripe.customers.retrieve(session.customer);
-
-  res.json({ message: `Thanks for your order, ${customer.name}!` });
+  await createBookingCheckout(req.params.session_id);
+  // createBookingCheckout(sessionID);
+  res.json({ message: `Thanks for your order,! ${req.user.name}` });
 });
 
 export const createBooking = createOne(Booking);

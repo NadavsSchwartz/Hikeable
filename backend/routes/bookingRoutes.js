@@ -14,7 +14,7 @@ import {
 const router = express.Router();
 
 router.post("/checkout-session/:tourID", protect, getCheckoutSession);
-router.post("/order/success", protect, getSessionUserDetails);
+router.post("/order/success/:session_id", protect, getSessionUserDetails);
 router.get("/", protect, getAllBookings);
 
 router.route("/:id").get(getBooking).patch(updateBooking).delete(deleteBooking);

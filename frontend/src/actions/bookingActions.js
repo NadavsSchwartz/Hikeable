@@ -1,5 +1,5 @@
 import axios from "axios";
-import { browserHistory } from "react-router";
+
 import {
   BOOKING_PAYMENT_FAIL,
   BOOKING_PAYMENT_REQUEST,
@@ -39,4 +39,20 @@ export const tourBooking = (tourId) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const getUsersBooking = () => async (dispatch) => {
+  const userInfo = localStorage.getItem("userInfo");
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${JSON.parse(userInfo).token}`,
+    },
+  };
+  const {
+    data: {
+      data: { data }, 
+    },
+  } = await axios.get("http://localhost:3000/api/v1/booking", config);
 };

@@ -4,12 +4,12 @@ import axios from "axios";
 import { tourBooking } from "../actions/bookingActions";
 import { useDispatch } from "react-redux";
 const CheckoutForm = ({ tourId }) => {
-  const [succeeded, setSucceeded] = useState(false)
+  const [succeeded, setSucceeded] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(tourBooking(tourId));
+    // ;
   }, [dispatch, tourId]);
   const cardStyle = {
     style: {
@@ -34,32 +34,19 @@ const CheckoutForm = ({ tourId }) => {
   //   setDisabled(event.empty);
   //   setError(event.error ? event.error.message : "");
   // };
-  // const handleSubmit = async (ev) => {
-  //   ev.preventDefault();
-  //   setProcessing(true);
-  //   const payload = await stripe.confirmCardPayment(clientSecret, {
-  //     payment_method: {
-  //       card: elements.getElement(CardElement),
-  //     },
-  //   });
-  //   if (payload.error) {
-  //     setError(`Payment failed ${payload.error.message}`);
-  //     setProcessing(false);
-  //   } else {
-  //     setError(null);
-  //     setProcessing(false);
-  //     setSucceeded(true);
-  //   }
-  // };
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+    dispatch(tourBooking(tourId));
+  };
   return (
-    <form id="payment-form" >
+    <form id="payment-form">
       <CardElement
         id="card-element"
         options={cardStyle}
         // onChange={handleChange}
       />
       {/* disabled={processing || disabled || succeeded} */}
-      <button  id="submit">
+      <button id="submit" onClick={handleSubmit}>
         {/* <span id="button-text">
           {processing ? (
             <div className="spinner" id="spinner"></div>
