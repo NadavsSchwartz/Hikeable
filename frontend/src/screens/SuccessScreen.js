@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const SuccessScreen = ({ match, history }) => {
+const SuccessScreen = ({ history }) => {
   // const session = history.location.search.split("%")[0];
   const session = history.location.search.split("=")[1].split("&")[0];
   console.log(session);
@@ -22,7 +22,7 @@ const SuccessScreen = ({ match, history }) => {
       .then((res) => {
         setCustomer(res.message);
       });
-  }, []);
+  }, [session]);
   return <div style={{ marginTop: "200px" }}>{customer}</div>;
 };
 

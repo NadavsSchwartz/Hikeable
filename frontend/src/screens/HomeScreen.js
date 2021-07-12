@@ -16,7 +16,7 @@ const HomeScreen = () => {
     dispatch(getTopTours());
   }, [dispatch]);
   return (
-    <>
+    <div>
       <div className="intro">
         <div
           className="mask"
@@ -68,13 +68,13 @@ const HomeScreen = () => {
                   className="col-lg-4 col-md-4 col-sm-12 "
                   style={{ minWidth: "340px" }}
                 >
-                  <TopTourCard tour={tour} />
+                  <TopTourCard tour={tour} key={tour.name} />
                 </MDBCol>
               ))}
           </MDBRow>
         </MDBContainer>
       )}
-    </>
+    </div>
   );
 };
 

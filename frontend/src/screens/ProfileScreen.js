@@ -8,7 +8,6 @@ import {
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getUsersBooking } from "../actions/bookingActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import MyBookings from "../components/MyBookings";
@@ -59,23 +58,26 @@ const ProfileScreen = ({ history }) => {
   }, [history, userInfo]);
   //1cb155
   return (
-    <div className="vh-100">
-      <header>
-        <MDBNavbar expand="lg" light bgColor="white" className="pt-5 mt-5">
-          <MDBContainer fluid>
-            <MDBNavbarNav right>
-              <MDBNavbarItem className="m-1">
-                <MDBBtn role="a" color="#" active onClick={handleProfile}>
+    <div className="min-vh-100">
+      <header className="">
+        <MDBNavbar className="pt-5 mt-5">
+          <MDBContainer fluid className="m-0">
+            <MDBNavbarNav
+              expand="sm"
+              className="d-flex flex-row justify-content-evenly mb-1"
+            >
+              <MDBNavbarItem className="" style={{ marginRight: "3px" }}>
+                <MDBBtn color="#" active onClick={handleProfile} size="md">
                   Profile Settings
                 </MDBBtn>
               </MDBNavbarItem>
-              <MDBNavbarItem className="m-1">
-                <MDBBtn color="white" onClick={handleReviews}>
+              <MDBNavbarItem className="" style={{ marginRight: "3px" }}>
+                <MDBBtn color="white" onClick={handleReviews} size="md">
                   My Reviews
                 </MDBBtn>
               </MDBNavbarItem>
-              <MDBNavbarItem className="m-1">
-                <MDBBtn color="white" onClick={handleBooking}>
+              <MDBNavbarItem className="" style={{ marginRight: "3px" }}>
+                <MDBBtn color="white" onClick={handleBooking} size="md">
                   My Booking
                 </MDBBtn>
               </MDBNavbarItem>
@@ -86,10 +88,34 @@ const ProfileScreen = ({ history }) => {
       {error && <Message>{error}</Message>}
       {loading && <Loader />}
 
-      <MDBContainer className="mt-5">
-        {showProfile ? <ProfileSettings /> : ""}
-        {showReviews ? <MyReviews /> : ""}
-        {showBooking ? <MyBookings /> : ""}
+      <MDBContainer className="mt-3">
+        {showProfile ? (
+          <>
+            <div>
+              <ProfileSettings />
+            </div>
+          </>
+        ) : (
+          ""
+        )}
+        {showReviews ? (
+          <>
+            <div>
+              <MyReviews />
+            </div>
+          </>
+        ) : (
+          ""
+        )}
+        {showBooking ? (
+          <>
+            <div>
+              <MyBookings />
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </MDBContainer>
     </div>
   );

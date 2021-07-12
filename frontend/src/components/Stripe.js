@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import axios from "axios";
+
 import { tourBooking } from "../actions/bookingActions";
 import { useDispatch } from "react-redux";
 const CheckoutForm = ({ tourId }) => {

@@ -6,10 +6,16 @@ import {
   MDBCardTitle,
   MDBListGroup,
   MDBListGroupItem,
+  MDBBtn,
+  MDBIcon,
   MDBCardLink,
 } from "mdb-react-ui-kit";
 
-const Tour = ({ tour }) => {
+const Tour = ({ tour, booking = false }) => {
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log(booking);
+  };
   return (
     <MDBCard
       className="text-white text-center mt-5"
@@ -23,6 +29,13 @@ const Tour = ({ tour }) => {
         style={{ height: "220px" }}
         className="card-image"
       />
+      {booking && (
+        <div className="position-absolute">
+          <MDBBtn floating color="success" onClick={handleDelete}>
+            <MDBIcon icon="trash" color="white"></MDBIcon>
+          </MDBBtn>
+        </div>
+      )}
       <MDBCardBody>
         <MDBCardTitle>{tour.name}</MDBCardTitle>
         <div className="row">

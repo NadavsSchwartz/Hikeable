@@ -27,7 +27,7 @@ const TourReviewsScreen = ({ match, history }) => {
 
   const tourReviewCreate = useSelector((state) => state.tourReviewCreate);
   const {
-    error: errortourReview,
+    // error: errortourReview,
     success: successtourReview,
   } = tourReviewCreate;
   const [reviewForm, setReviewForm] = useState({

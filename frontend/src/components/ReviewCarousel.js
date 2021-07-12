@@ -1,21 +1,23 @@
 import React from "react";
-import { MDBCarouselItem } from "mdb-react-ui-kit";
+import { MDBCarouselItem, MDBIcon } from "mdb-react-ui-kit";
 
 const ReviewCarousel = ({ tour, index }) => {
   return (
-    <MDBCarouselItem itemId={index} >
+    <MDBCarouselItem itemId={index}>
       <div className="testimonial">
         <div className="avatar mx-auto ">
           <img
-            src={tour.user.photo}
-            alt={tour.user.name}
+            src={
+              tour.user ? tour.user.photo : <MDBIcon icon="user-alt"></MDBIcon>
+            }
+            alt="User"
             className="rounded-circle img-fluid"
             style={{ maxHeight: "100px" }}
           />
         </div>
       </div>
       <div>
-        <h4 className="font-weight-bold ">{tour.user.name}</h4>
+        {/* <h4 className="font-weight-bold ">{tour.user.name}</h4> */}
         <span>
           {" "}
           <i className="fas fa-quote-left"></i>

@@ -1,4 +1,4 @@
-import { MDBContainer } from "mdb-react-ui-kit";
+import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -18,19 +18,22 @@ const MyBookings = () => {
     }
   }, [dispatch, myBookings]);
   return (
-    <MDBContainer
-      style={{
-        height: "100vh",
-        margin: "35px",
-      }}
-    >
-      <h2 className="text-center mb-5">My Bookings</h2>
+    <MDBContainer>
+      <h2 className="text-center ">My Bookings</h2>
       {error && <Message>{error}</Message>}
       {loading && <Loader />}
-      {myBookings &&
-        myBookings.map((booking) => (
-          <Tour tour={booking.tour} id={booking.tour._id} />
-        ))}
+      <MDBRow>
+        {myBookings &&
+          myBookings.map((booking) => (
+            <MDBCol className="col-lg-4 col-md-6 col-sm-12">
+              <Tour
+                tour={booking.tour}
+                id={booking.tour._id}
+                booking={booking._id}
+              />
+            </MDBCol>
+          ))}
+      </MDBRow>
     </MDBContainer>
   );
 };

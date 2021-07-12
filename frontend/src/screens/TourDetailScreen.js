@@ -17,13 +17,11 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 import MapBox from "../components/MapBox";
-import ReviewCarousel from "../components/ReviewCarousel";
-import ReviewForm from "../components/ReviewForm";
+
 
 const TourDetailScreen = ({ match }) => {
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo: user, loading: userload, error: usererror } = userLogin;
+
 
   const tourDetails = useSelector((state) => state.tourDetails);
   const { tour, loading, error } = tourDetails;

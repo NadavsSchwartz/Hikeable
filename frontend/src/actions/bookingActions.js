@@ -7,6 +7,8 @@ import {
   USER_BOOKING_REQUEST,
   USER_BOOKING_SUCCESS,
   USER_BOOKING_FAIL,
+  USER_BOOKING_DELETE_REQUEST,
+  USER_BOOKING_DELETE_SUCCESS,
 } from "../constants/bookingConstants";
 
 export const tourBooking = (tourId) => async (dispatch) => {
@@ -45,30 +47,60 @@ export const tourBooking = (tourId) => async (dispatch) => {
 };
 
 export const getUsersBooking = () => async (dispatch) => {
-    try {
-      dispatch({ type: USER_BOOKING_REQUEST });
-      const userInfo = localStorage.getItem("userInfo");
+  try {
+    dispatch({ type: USER_BOOKING_REQUEST });
+    const userInfo = localStorage.getItem("userInfo");
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(userInfo).token}`,
-        },
-      };
-      const {
-        data: {
-          data: { data },
-        },
-      } = await axios.get("http://localhost:3000/api/v1/booking", config);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(userInfo).token}`,
+      },
+    };
+    const {
+      data: {
+        data: { data },
+      },
+    } = await axios.get("http://localhost:3000/api/v1/booking", config);
     dispatch({ type: USER_BOOKING_SUCCESS, payload: data });
-        
-    } catch (error) {
-      dispatch({
-        type: BOOKING_PAYMENT_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }}
+  } catch (error) {
+    dispatch({
+      type: USER_BOOKING_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
+export const deleteUsersBooking = (bookingId) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_BOOKING_DELETE_REQUEST });
+    const userInfo = localStorage.getItem("userInfo");
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${JSON.parse(userInfo).token}`,
+      },
+    };
+    const {
+      data: {
+        data: { data },
+      },
+    } = await axios.delete(
+      `http://localhost:3000/api/v1/booking/${bookingId}`,
+      config
+    );
+    dispatch({ type: USER_BOOKING_DELETE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: BOOKING_PAYMENT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
