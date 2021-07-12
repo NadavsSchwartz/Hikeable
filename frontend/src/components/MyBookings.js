@@ -1,15 +1,22 @@
-import axios from "axios";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead,
-} from "mdb-react-ui-kit";
+import { MDBContainer } from "mdb-react-ui-kit";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { getUsersBooking } from "../actions/bookingActions";
+import Tour from "./Tour";
+import Loader from "./Loader";
+import Message from "./Message";
 
 const MyBookings = () => {
+  const dispatch = useDispatch();
+  const userBooking = useSelector((state) => state.userBookings);
+  const { loading, error, myBookings } = userBooking;
+
+  useEffect(() => {
+    if (!myBookings) {
+      dispatch(getUsersBooking());
+    }
+  }, [dispatch, myBookings]);
   return (
     <MDBContainer
       style={{
@@ -17,39 +24,13 @@ const MyBookings = () => {
         margin: "35px",
       }}
     >
-      {" "}
       <h2 className="text-center mb-5">My Bookings</h2>
-      <MDBRow className="d-flex justify-content-center">
-        <MDBTable
-          pagination
-          hover
-          bordered
-          small
-          borderColor="success"
-          responsive
-        >
-          <MDBTableHead>
-            {" "}
-            <tr>
-              <th scope="col">Duration</th>
-              <th scope="col">Name</th>
-              <th scope="col">Difficulty</th>
-              <th scope="col">Price</th>
-              <th scope="col">Start Date</th>
-            </tr>
-          </MDBTableHead>
-
-          <MDBTableBody className="text-center">
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-            </tr>
-          </MDBTableBody>
-        </MDBTable>
-      </MDBRow>
+      {error && <Message>{error}</Message>}
+      {loading && <Loader />}
+      {myBookings &&
+        myBookings.map((booking) => (
+          <Tour tour={booking.tour} id={booking.tour._id} />
+        ))}
     </MDBContainer>
   );
 };
