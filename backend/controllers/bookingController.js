@@ -20,7 +20,7 @@ export const getCheckoutSession = catchAsync(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     // success_url: `${req.protocol}://${req.get("host")}/`,
-    success_url: `${req.protocol}://localhost:3001/success?session_id={CHECKOUT_SESSION_ID}&tour=${req.params.tourID}&user=${req.user.id}&price=${tour.price}"`,
+    success_url: `${req.protocol}://localhost:3001/success`,
     cancel_url: `${req.protocol}://${req.get("host")}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourID,
@@ -44,12 +44,11 @@ export const getCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-export const createBookingCheckout = async (sessionID) => {
+export const createBookingCheckout = async (session) => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-  const session = await stripe.checkout.sessions.retrieve(sessionID);
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
-  const price = session.amount_total / 100;
+  const price = session.display_items[0].amount / 100;
   await Booking.create({ tour, user, price });
 };
 
@@ -58,6 +57,24 @@ export const getSessionUserDetails = catchAsync(async (req, res) => {
   // createBookingCheckout(sessionID);
   res.json({ message: `Thanks for your order,! ${req.user.name}` });
 });
+
+export const webhookCheckout = (req, res, next) => {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  let event;
+  try {
+    const signature = req.headers["stripe-signature"];
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      signature,
+      process.env.TRIPE_WEBHOOK_SECRET
+    );
+  } catch (error) {
+    return res.status(400).send(`webhook error: ${error.message}`);
+  }
+  if ((event.type = "checkout.session.completed"))
+    createBookingCheckout(event.data.object);
+  res.status(200).json({ received: true });
+};
 
 export const createBooking = createOne(Booking);
 export const getBooking = getOne(Booking);

@@ -15,6 +15,7 @@ import { getTourDetails } from "../actions/tourActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { createTourReview } from "../actions/tourActions";
+import { getUsersBooking } from "../actions/bookingActions";
 
 const TourReviewsScreen = ({ match, history }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const TourReviewsScreen = ({ match, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading: reviewLoading, error: reviewError, userInfo } = userLogin;
+
+
 
   const tourReviewCreate = useSelector((state) => state.tourReviewCreate);
   const {

@@ -14,16 +14,18 @@ import tourRouter from "./routes/tourRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import AppError from "./utils/appError.js";
 import globalErrorHandler from "./controllers/errorController.js";
+import { webhookCheckout } from "./controllers/bookingController.js";
 
 const __dirname = path.resolve();
 
 const app = express();
-app.use(cors());
 
+app.enable("trust proxy");
+app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, `public`)));
 
-// 1) MIDDLEWARES
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
@@ -35,7 +37,11 @@ const limiter = rateLimit({
   message: "Too many requests from this IP, please try again in an hour!",
 });
 app.use("/api", limiter);
-
+app.post(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  webhookCheckout
+);
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: "10kb" }));
 
@@ -64,7 +70,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// 3) ROUTES
 app.get("/", (req, res) => {
   res.status(200).render("base");
 });

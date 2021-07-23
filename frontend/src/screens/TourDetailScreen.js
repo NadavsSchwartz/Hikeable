@@ -1,4 +1,5 @@
 import {
+  MDBBtn,
   MDBCardBody,
   MDBCardFooter,
   MDBCardHeader,
@@ -17,20 +18,25 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 import MapBox from "../components/MapBox";
-
+import { getUsersBooking } from "../actions/bookingActions";
 
 const TourDetailScreen = ({ match }) => {
   const dispatch = useDispatch();
 
-
   const tourDetails = useSelector((state) => state.tourDetails);
   const { tour, loading, error } = tourDetails;
+
+  const userBooking = useSelector((state) => state.userBookings);
+  const { myBookings } = userBooking;
 
   useEffect(() => {
     if (!tour) {
       dispatch(getTourDetails(match.params.id));
     }
-  }, [match, dispatch, tour]);
+    if (!myBookings) {
+      dispatch(getUsersBooking());
+    }
+  }, [match, dispatch, tour, myBookings]);
 
   return (
     <div className="container">
@@ -179,9 +185,16 @@ const TourDetailScreen = ({ match }) => {
         <div className="d-flex justify-content-center mb-3">
           {tour && (
             <div>
-              <a href={`/tours/${tour.id}/book`} className="btn">
-                Continue to Booking
-              </a>
+              {myBookings &&
+              myBookings.find((booking) => booking.tour._id === tour._id) ? (
+                <MDBBtn disabled color="success">
+                  You alreay Booked this tour
+                </MDBBtn>
+              ) : (
+                <a href={`/tours/${tour.id}/book`} className="btn">
+                  Continue to Booking
+                </a>
+              )}
               <a href={`/tours/${tour.id}/reviews`} className="btn">
                 Continue to see reviews
               </a>
