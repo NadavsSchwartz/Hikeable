@@ -39,37 +39,16 @@ const CheckoutForm = ({ tourId }) => {
     dispatch(tourBooking(tourId));
   };
   return (
-    <form id="payment-form">
+    <form id='payment-form'>
       <CardElement
-        id="card-element"
+        id='card-element'
         options={cardStyle}
         // onChange={handleChange}
       />
       {/* disabled={processing || disabled || succeeded} */}
-      <button id="submit" onClick={handleSubmit}>
-        {/* <span id="button-text">
-          {processing ? (
-            <div className="spinner" id="spinner"></div>
-          ) : (
-            "Pay now"
-          )}
-        </span> */}
-      </button>
-      {/* Show any error that happens when processing the payment */}
-      {/* {error && (
-        <div className="card-error" role="alert">
-          {error}
-        </div>
-      )} */}
-      {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
-        <a href={`https://dashboard.stripe.com/test/payments`}>
-          {" "}
-          Stripe dashboard.
-        </a>{" "}
-        Refresh the page to pay again.
-      </p>
+      <span id='submit' onClick={handleSubmit}>
+        CONTINUE TO BOOKING
+      </span>
     </form>
   );
 };
