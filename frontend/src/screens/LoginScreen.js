@@ -23,37 +23,40 @@ const LoginScreen = ({ history, location }) => {
     dispatch(login(email, password));
   };
   return (
-    <MDBContainer className="mt-5">
-      <MDBRow className="d-flex justify-content-center">
-        <MDBCol md="7">
+    <MDBContainer style={{ height: "100vh" }}>
+      <MDBRow
+        className='d-flex justify-content-center'
+        style={{ marginTop: "100px" }}
+      >
+        <MDBCol md='7'>
           <form onSubmit={submitHandler}>
-            <p className="h4 text-center mb-4">Sign in</p>
+            <p className='h4 text-center mb-4'>Sign in</p>
 
-            {error && <Message variant="danger">{error}</Message>}
+            {error && <Message variant='danger'>{error}</Message>}
 
-            <label htmlFor="email" className="grey-text">
+            <label htmlFor='email' className='grey-text'>
               Your email
             </label>
             <input
-              type="email"
-              id="email"
-              className="form-control"
+              type='email'
+              id='email'
+              className='form-control'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <br />
-            <label htmlFor="password" className="grey-text">
+            <label htmlFor='password' className='grey-text'>
               Your password
             </label>
             <input
-              type="password"
-              id="password"
-              className="form-control"
+              type='password'
+              id='password'
+              className='form-control'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <div className="text-center mt-4">
-              <MDBBtn color="white" type="submit">
+            <div className='text-center mt-4'>
+              <MDBBtn color='white' type='submit'>
                 {loading && <Loader />}Login
               </MDBBtn>
             </div>

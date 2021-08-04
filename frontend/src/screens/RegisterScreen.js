@@ -33,70 +33,70 @@ const RegisterScreen = ({ history, location }) => {
     }
   };
   return (
-    <MDBContainer className="" style={{ marginTop: "100px" }}>
+    <MDBContainer className='' style={{ marginTop: "100px", height: "100vh" }}>
       {message && <Message>{message}</Message>}
       {error && <Message>{error}</Message>}
       {loading && <Loader />}
 
-      <MDBRow className="d-flex justify-content-center">
-        <MDBCol md="7">
+      <MDBRow className='d-flex justify-content-center'>
+        <MDBCol md='7'>
           <form onSubmit={submitHandler}>
-            <p className="h4 text-center mb-4">Register</p>
-            <label htmlFor="text" className="grey-text">
+            <p className='h4 text-center mb-4'>Register</p>
+            <label htmlFor='text' className='grey-text'>
               Your name
             </label>
             <input
-              type="text"
-              id="name"
-              className="form-control"
+              type='text'
+              id='name'
+              className='form-control'
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
             <br />
-            <label htmlFor="email" className="grey-text">
+            <label htmlFor='email' className='grey-text'>
               Your email
             </label>
             <input
-              type="email"
-              id="email"
-              className="form-control"
+              type='email'
+              id='email'
+              className='form-control'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
             <br />
-            <label htmlFor="password" className="grey-text">
+            <label htmlFor='password' className='grey-text'>
               Password
             </label>
             <input
-              type="password"
-              id="password"
-              className="form-control"
+              type='password'
+              id='password'
+              className='form-control'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <br />
 
-            <label htmlFor="passwordConfirmation" className="grey-text">
+            <label htmlFor='passwordConfirmation' className='grey-text'>
               Password Confirmation
             </label>
             <input
-              type="password"
-              id="passwordConfirmation"
-              className="form-control"
+              type='password'
+              id='passwordConfirmation'
+              className='form-control'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <div className="text-center mt-4">
-              <MDBBtn color="white" type="submit">
+            <div className='text-center mt-4'>
+              <MDBBtn color='white' type='submit'>
                 Register
               </MDBBtn>
             </div>
           </form>
-          <MDBCol className="text-center mt-3">
+          <MDBCol className='text-center mt-3'>
             Already have an account?
             <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
               Login
