@@ -18,10 +18,9 @@ NOT YET PUBLISHED.
 * Advanced authentication and authorization (including password reset)
 * Credit card payments with Stripe
 * Fully Responsive
-* Reviews implementation for events
 * Responsive Map for each tour showing tour's destinations
 * User Dashboard
-* 
+
 ## Tech Used
 
 ### Back End
